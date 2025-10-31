@@ -1,18 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomSwitch extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
-  final Widget activeIcon;
-  final Widget inactiveIcon;
 
   const CustomSwitch({
     super.key,
     required this.value,
     required this.onChanged,
-    required this.activeIcon,
-    required this.inactiveIcon,
   });
 
   @override
@@ -20,27 +15,40 @@ class CustomSwitch extends StatelessWidget {
     return GestureDetector(
       onTap: () => onChanged(!value),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 60,
-        height: 30,
-        padding: const EdgeInsets.all(4),
+        duration: const Duration(milliseconds: 250),
+        width: 50,
+        height: 28,
+        padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
-          color: value ? Colors.blue : Colors.grey.shade200,
+          color: Colors.grey[400], // track color
           borderRadius: BorderRadius.circular(20),
         ),
         child: Stack(
           children: [
-            Align(
-              alignment: value ? Alignment.centerRight : Alignment.centerLeft,
+            AnimatedAlign(
+              duration: const Duration(milliseconds: 250),
+              alignment: value
+                  ? Alignment.centerRight
+                  : Alignment.centerLeft,
+              curve: Curves.easeInOut,
               child: Container(
                 width: 22,
                 height: 22,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: value ? activeIcon : inactiveIcon,
+                  gradient: const LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Colors.black, Colors.white],
+                    stops: [0.5, 0.5], // 👈 sharp split
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 2,
+                      offset: const Offset(1, 2),
+                    ),
+                  ],
                 ),
               ),
             ),
