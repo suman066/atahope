@@ -1,3 +1,4 @@
+import 'package:atahope/Constants/constants.dart';
 import 'package:atahope/helper/navigation_helper/app_routes.dart';
 import 'package:atahope/helper/navigation_helper/navigation_helper.dart';
 import 'package:atahope/view_screen/custom_switch.dart';
@@ -30,15 +31,19 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        titleSpacing: 0,
         //automaticallyImplyLeading: false,
         leading: InkWell(
             onTap:(){
               Navigator.pop(context);
             },
             child: const Icon(Icons.arrow_back, color: Colors.black,)),
-        title: const Text(
+        title: Text(
           'ATAHOPE',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20),
+            style: GoogleFonts.secularOne(
+              textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.textBlack,fontSize: 16,
+                fontWeight: FontWeight.w200,),
+            )
         ),
         actions: [
           IconButton(
@@ -121,10 +126,10 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: selectedLanguage,
-                        icon: const Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
+                        icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.black87),
+                        style: GoogleFonts.secularOne(
+                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
+                            fontWeight: FontWeight.w100,),
                         ),
                         dropdownColor: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -156,10 +161,10 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: selectedCountry,
-                        icon: const Icon(Icons.keyboard_arrow_down, color: Colors.black),
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
+                        icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.black87),
+                        style:GoogleFonts.secularOne(
+                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
+                            fontWeight: FontWeight.w100,),
                         ),
                         dropdownColor: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -189,7 +194,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 height: 45,
                 width: 285,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: AppColors.gray,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Row(
@@ -202,9 +207,12 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                           decoration: const InputDecoration(
                             hintText: 'Search',
                             border: InputBorder.none,
-                            hintStyle: TextStyle(color: Colors.black87),
+                            hintStyle: TextStyle(color: AppColors.black87),
                           ),
-                          style: const TextStyle(color: Colors.black87),
+                          style: GoogleFonts.secularOne(
+                            textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
+                              fontWeight: FontWeight.w100,),
+                          ),
                           cursorColor: Colors.black,
                         ),
                       ),
@@ -217,9 +225,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       },
                       child: Container(
                         height: 45,
-                        width: 60,
+                        width: 65,
                         decoration: const BoxDecoration(
-                          color: Color(0xFFB34BCB), // purple background
+                          color: AppColors.purple, // purple background
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(25),
                             bottomLeft: Radius.circular(25),
@@ -230,9 +238,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Icon(Icons.search, color: Colors.black, size: 20),
+                            Icon(Icons.search, color: AppColors.black87, size: 20),
                             SizedBox(width: 6),
-                            Icon(Icons.mic, color: Colors.black, size: 20),
+                            Icon(Icons.mic, color: AppColors.black87, size: 20),
                           ],
                         ),
                       ),
@@ -251,27 +259,36 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(color: AppColors.gray),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const TextField(
+                      child: TextField(
                         textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "From",
+                        decoration: const InputDecoration(
+                          hintText: 'From',
                           border: InputBorder.none,
+                          hintStyle: TextStyle(color: AppColors.gray),
                         ),
+                        style: GoogleFonts.secularOne(
+                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
+                            fontWeight: FontWeight.w100,),
+                        ),
+                        cursorColor: Colors.black,
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Column(
-                    children: const [
+                    children: [
                       Text(
                         "Distance",
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                        style: GoogleFonts.secularOne(
+                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
+                            fontWeight: FontWeight.w100,),
+                        ),
                       ),
-                      SizedBox(height: 2),
-                      Icon(Icons.route, size: 20, color: Colors.grey),
+                      const SizedBox(height: 2),
+                      const Icon(Icons.route, size: 20, color: AppColors.black87),
                     ],
                   ),
                   const SizedBox(width: 10),
@@ -279,15 +296,21 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(color: AppColors.gray),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const TextField(
+                      child: TextField(
                         textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "To",
+                        decoration: const InputDecoration(
+                          hintText: 'To',
                           border: InputBorder.none,
+                          hintStyle: TextStyle(color: AppColors.gray),
                         ),
+                        style: GoogleFonts.secularOne(
+                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
+                            fontWeight: FontWeight.w100,),
+                        ),
+                        cursorColor: Colors.black,
                       ),
                     ),
                   ),
@@ -337,7 +360,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       buildTabButton(
                         index: 0,
                         icon: Icons.public,
-                        activeColor: Colors.purple,
+                        activeColor: AppColors.purple,
                       ),
                       const SizedBox(height: 12),
                       buildTabButton(
@@ -375,7 +398,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isSelected ? activeColor : Colors.grey.shade300,
+          color: isSelected ? activeColor : AppColors.gray,
           boxShadow: isSelected
               ? [
             BoxShadow(
@@ -389,7 +412,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
         padding: const EdgeInsets.all(8),
         child: Icon(
           icon,
-          color: isSelected ? Colors.white : Colors.black54,
+          color: isSelected ? AppColors.white : AppColors.black54,
           size: 20,
         ),
       ),
@@ -424,14 +447,16 @@ class FoodCard extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+            style: GoogleFonts.secularOne(
+              textStyle: const TextStyle(letterSpacing: .5,color:AppColors.black87,fontSize: 12,
+                fontWeight: FontWeight.w100,),
+            ),
           ),
           Text(
             price,
-            style: const TextStyle(
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
-              fontSize: 12,
+            style: GoogleFonts.secularOne(
+              textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.red,fontSize: 12,
+                fontWeight: FontWeight.w400,),
             ),
           ),
         ],

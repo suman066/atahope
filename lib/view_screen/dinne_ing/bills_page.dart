@@ -1,7 +1,9 @@
+import 'package:atahope/Constants/constants.dart';
 import 'package:atahope/helper/navigation_helper/app_routes.dart';
 import 'package:atahope/helper/navigation_helper/navigation_helper.dart';
 import 'package:atahope/view_screen/custom_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BillsPage extends StatelessWidget {
   const BillsPage({super.key});
@@ -60,14 +62,18 @@ class BillsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        titleSpacing: 0,
         leading: InkWell(
         onTap:(){
           NavigationHelper.pop();
         },
         child: const Icon(Icons.arrow_back, color: Colors.black,)),
-        title: const Text(
-          'Menu',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20),
+        title: Text(
+            'Menu',
+            style: GoogleFonts.secularOne(
+              textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.textBlack,fontSize: 16,
+                fontWeight: FontWeight.w200,),
+            )
         ),
         actions: [
           IconButton(
@@ -103,9 +109,9 @@ class BillsPage extends StatelessWidget {
           children: [
             Text(
               "Bills",
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 26,
+              style: GoogleFonts.secularOne(
+                textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.textBlack,fontSize: 18,
+                  fontWeight: FontWeight.w300,),
               ),
             ),
             Expanded(
@@ -172,7 +178,7 @@ class BillCard extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
           decoration: BoxDecoration(
-            color: Colors.grey[300],
+            color: AppColors.gray,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -185,7 +191,7 @@ class BillCard extends StatelessWidget {
                   children: [
                     const Icon(
                       Icons.receipt_long,
-                      color: Colors.black87,
+                      color: AppColors.black87,
                       size: 35,
                     ),
                   ],
@@ -205,15 +211,15 @@ class BillCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: const Icon(Icons.local_cafe,
-                              color: Colors.red, size: 14),
+                              color: AppColors.red, size: 14),
                         ),
                         const SizedBox(width: 3),
                         Flexible(
                           child: Text(
                             title,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
+                            style: GoogleFonts.secularOne(
+                              textStyle: const TextStyle(letterSpacing: .5,color:AppColors.textBlack,fontSize: 13,
+                                fontWeight: FontWeight.w500,),
                             ),
                             softWrap: true,
                           ),
@@ -225,9 +231,9 @@ class BillCard extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         amount,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                        style: GoogleFonts.secularOne(
+                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                            fontWeight: FontWeight.w100,),
                         ),
                         softWrap: true,
                       ),
@@ -245,9 +251,9 @@ class BillCard extends StatelessWidget {
                   children: [
                     Text(
                       date,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 12,
+                      style: GoogleFonts.secularOne(
+                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                          fontWeight: FontWeight.w100,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.center,
@@ -255,9 +261,9 @@ class BillCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       time,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 12,
+                      style: GoogleFonts.secularOne(
+                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                          fontWeight: FontWeight.w100,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.center,
@@ -274,9 +280,9 @@ class BillCard extends StatelessWidget {
                   children: [
                     Text(
                       location,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 12,
+                      style: GoogleFonts.secularOne(
+                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                          fontWeight: FontWeight.w100,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -284,9 +290,9 @@ class BillCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       summary,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 12,
+                      style: GoogleFonts.secularOne(
+                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                          fontWeight: FontWeight.w100,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -301,9 +307,9 @@ class BillCard extends StatelessWidget {
                   children: [
                     Text(
                       location1,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 12,
+                      style: GoogleFonts.secularOne(
+                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                          fontWeight: FontWeight.w100,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -311,9 +317,9 @@ class BillCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       summary1,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 12,
+                      style: GoogleFonts.secularOne(
+                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
+                          fontWeight: FontWeight.w100,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -332,7 +338,7 @@ class BillCard extends StatelessWidget {
             width: 10,
             height: 10,
             decoration: BoxDecoration(
-              color: showNotificationDot?Colors.green:Colors.red,
+              color: showNotificationDot?AppColors.green:AppColors.red,
               shape: BoxShape.circle,
             ),
           ),

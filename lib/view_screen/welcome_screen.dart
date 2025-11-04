@@ -1,8 +1,11 @@
+import 'package:atahope/Constants/constants.dart';
 import 'package:atahope/helper/navigation_helper/app_routes.dart';
 import 'package:atahope/helper/navigation_helper/navigation_helper.dart';
 import 'package:atahope/helper/platform_helper/back_helper/platform_web_back_helper.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class WelcomeScreen extends StatefulWidget {
@@ -39,11 +42,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                     Text(
                       "Welcome to Atahope",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                      style: GoogleFonts.secularOne(
+                        textStyle: TextStyle(color: AppColors.textBlack, letterSpacing: .5,fontSize: 18,
+                          fontWeight: FontWeight.w200,),
                       ),
                     ),
                     const SizedBox(height: 120),
@@ -51,15 +54,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     // Dine-in option
                     Column(
                       children: [
-                        Image.asset("assets/images/dinne-ing.png"),
+                        SvgPicture.asset(
+                          'assets/svg/dinne_img.svg',
+                        ),
                         const SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () {
                             //NavigationHelper.push(AppRoutes.dineIn);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey.shade300,
-                            foregroundColor: Colors.black,
+                            backgroundColor: AppColors.gray,
+                            foregroundColor: AppColors.textBlack,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -67,9 +72,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 12),
                           ),
-                          child: const Text(
+                          child: Text(
                             "Dinne-ing",
-                            style: TextStyle(fontSize: 16),
+                            style: GoogleFonts.secularOne(
+                              textStyle: const TextStyle(letterSpacing: .5, color:AppColors.textBlack,fontSize: 14,
+                                fontWeight: FontWeight.w200,),
+                            ),
                           ),
                         ),
                       ],
@@ -80,15 +88,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     // Delivery option
                     Column(
                       children: [
-                        Image.asset("assets/images/delivery.png"),
+                        SvgPicture.asset(
+                          'assets/svg/delivery_img.svg',
+                        ),
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {
                             NavigationHelper.push(AppRoutes.dineIn);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey.shade300,
-                            foregroundColor: Colors.black,
+                            backgroundColor: AppColors.gray,
+                            foregroundColor: AppColors.textBlack,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -96,9 +106,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 12),
                           ),
-                          child: const Text(
+                          child: Text(
                             "Delivery",
-                            style: TextStyle(fontSize: 16),
+                            style: GoogleFonts.secularOne(
+                              textStyle: const TextStyle(letterSpacing: .5,color:AppColors.textBlack,fontSize: 14,
+                                fontWeight: FontWeight.w200,),
+                            ),
                           ),
                         ),
                       ],

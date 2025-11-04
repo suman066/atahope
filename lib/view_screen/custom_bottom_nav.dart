@@ -1,3 +1,4 @@
+import 'package:atahope/Constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNav extends StatelessWidget {
@@ -16,13 +17,13 @@ class CustomBottomNav extends StatelessWidget {
       margin: const EdgeInsets.only(left: 30, right: 30, bottom: 16, top: 8.0),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.grey.shade300,
+        color: AppColors.gray,
         borderRadius: BorderRadius.circular(35),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildNavItem(Icons.receipt_long_outlined, 0, activeColor: Colors.purple), // Bills
+          _buildNavItem(Icons.receipt_long_outlined, 0, activeColor: AppColors.purple), // Bills
           _buildNavItem(Icons.check_circle_outline, 1),
           _buildCameraItem(2), // Camera special
           _buildNavItem(Icons.chat_bubble_outline, 3),
@@ -37,14 +38,14 @@ class CustomBottomNav extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isSelected ? activeColor ?? Colors.purple : Colors.transparent,
+        color: isSelected ? activeColor ?? AppColors.purple : Colors.transparent,
         shape: BoxShape.circle,
       ),
       child: IconButton(
         onPressed: () => onTap(index),
         icon: Icon(
           icon,
-          color: isSelected ? Colors.white : Colors.black,
+          color: isSelected ? AppColors.white : AppColors.black87,
           size: 26,
         ),
         splashRadius: 26,
@@ -70,7 +71,7 @@ class CustomBottomNav extends StatelessWidget {
         ),
         child: Icon(
           Icons.camera_alt_outlined,
-          color: isSelected ? Colors.black : Colors.black54,
+          color: isSelected ? AppColors.black87 : AppColors.black54,
           size: 26,
         ),
       ),

@@ -2,6 +2,22 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+class AppColors {
+
+  static const Color textBlack = Color(0xFF000000);
+  static const Color black87 = Color(0xDD000000);
+  static const Color black54 = Color(0x8A000000);
+  static const Color purple = Color(0xFFBD55C6);
+
+  static const Color red = Color(0xFFFC0303);
+
+  static const Color green = Color(0xFF2CDB0F);
+
+  static const Color gray = Color(0xFFD9D9D9);
+
+  static const Color white = Color(0xFFFFFFFF);
+}
+
 const darkerThemeBlue= Color.fromRGBO(6, 28, 43, 1);
 
 const darkThemeBlue= Color.fromRGBO(8, 35, 54, 1.0);
