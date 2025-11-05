@@ -93,6 +93,8 @@ class _SplashScreenPageState extends State<SplashScreenPage>
               opacity: _fadeInAnimation,
               child: Image.asset(
                 "assets/images/splash.png",
+                height: 253,
+                width: 268,
               ),
             ),
           ),

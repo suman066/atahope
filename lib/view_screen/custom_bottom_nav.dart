@@ -14,44 +14,55 @@ class CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 30, right: 30, bottom: 16, top: 8.0),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      margin: const EdgeInsets.only(left: 1, right: 1, bottom: 1, top: 1.0),
+      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 0),
       decoration: BoxDecoration(
         color: AppColors.gray,
         borderRadius: BorderRadius.circular(35),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildNavItem(Icons.receipt_long_outlined, 0, activeColor: AppColors.purple), // Bills
-          _buildNavItem(Icons.check_circle_outline, 1),
+          _buildNavItem("assets/images/bill.png", 0, activeColor: AppColors.purple),
+          _buildNavItem("assets/images/check.png", 1),
           _buildCameraItem(2), // Camera special
-          _buildNavItem(Icons.chat_bubble_outline, 3),
-          _buildNavItem(Icons.person_outline, 4),
+          _buildNavItem("assets/images/message.png", 3),
+          _buildNavItem("assets/images/profile.png", 4),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index, {Color? activeColor}) {
+  Widget _buildNavItem(
+      String assetPath,
+      int index, {
+        Color? activeColor,
+        double width = 40,
+        double height = 40,
+      }) {
     final bool isSelected = currentIndex == index;
 
     return Container(
       decoration: BoxDecoration(
-        color: isSelected ? activeColor ?? AppColors.purple : Colors.transparent,
+        color: isSelected ? (activeColor ?? AppColors.purple) : Colors.transparent,
         shape: BoxShape.circle,
       ),
       child: IconButton(
         onPressed: () => onTap(index),
-        icon: Icon(
-          icon,
-          color: isSelected ? AppColors.white : AppColors.black87,
-          size: 26,
+        icon: SizedBox(
+          width: width,
+          height: height,
+          child: Image.asset(
+            assetPath,
+            fit: BoxFit.contain,
+            color: isSelected ? AppColors.white : AppColors.black87, // remove if no tint
+          ),
         ),
-        splashRadius: 26,
+        splashRadius: width, // optional
       ),
     );
   }
+
 
   /// Special design for the camera icon (with turquoise outline)
   Widget _buildCameraItem(int index) {
@@ -69,10 +80,14 @@ class CustomBottomNav extends StatelessWidget {
             width: 2,
           ),
         ),
-        child: Icon(
-          Icons.camera_alt_outlined,
-          color: isSelected ? AppColors.black87 : AppColors.black54,
-          size: 26,
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: Image.asset(
+            "assets/images/camera.png",
+            fit: BoxFit.contain,
+            color: isSelected ? AppColors.white : AppColors.black87, // remove if no tint
+          ),
         ),
       ),
     );

@@ -44,9 +44,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: [
                      Text(
                       "Welcome to Atahope",
-                      style: GoogleFonts.secularOne(
-                        textStyle: TextStyle(color: AppColors.textBlack, letterSpacing: .5,fontSize: 18,
-                          fontWeight: FontWeight.w200,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                          fontWeight: FontWeight.w400,),
                       ),
                     ),
                     const SizedBox(height: 120),
@@ -54,10 +54,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     // Dine-in option
                     Column(
                       children: [
-                        SvgPicture.asset(
-                          'assets/svg/dinne_img.svg',
+                        Image.asset(
+                          'assets/images/dinne-ing.png',
+                          height: 100,
+                          width: 100,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 25),
                         ElevatedButton(
                           onPressed: () {
                             //NavigationHelper.push(AppRoutes.dineIn);
@@ -67,31 +69,33 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             foregroundColor: AppColors.textBlack,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(50),
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 12),
+                                horizontal: 40, vertical: 4),
                           ),
                           child: Text(
                             "Dinne-ing",
-                            style: GoogleFonts.secularOne(
-                              textStyle: const TextStyle(letterSpacing: .5, color:AppColors.textBlack,fontSize: 14,
-                                fontWeight: FontWeight.w200,),
-                            ),
+                            style: GoogleFonts.libreFranklin(
+                              textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                                fontWeight: FontWeight.w400,),
+                            )
                           ),
                         ),
                       ],
                     ),
 
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 70),
 
                     // Delivery option
                     Column(
                       children: [
-                        SvgPicture.asset(
-                          'assets/svg/delivery_img.svg',
+                        Image.asset(
+                          'assets/images/delivery.png',
+                          height: 100,
+                          width: 100,
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         ElevatedButton(
                           onPressed: () {
                             NavigationHelper.push(AppRoutes.dineIn);
@@ -101,17 +105,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             foregroundColor: AppColors.textBlack,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(50),
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 12),
+                                horizontal: 50, vertical: 4),
                           ),
                           child: Text(
                             "Delivery",
-                            style: GoogleFonts.secularOne(
-                              textStyle: const TextStyle(letterSpacing: .5,color:AppColors.textBlack,fontSize: 14,
-                                fontWeight: FontWeight.w200,),
-                            ),
+                            style: GoogleFonts.libreFranklin(
+                              textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                                fontWeight: FontWeight.w400,),
+                            )
                           ),
                         ),
                       ],

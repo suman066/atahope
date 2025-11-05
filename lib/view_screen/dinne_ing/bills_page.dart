@@ -12,6 +12,7 @@ class BillsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bills = [
       {
+        "image":"assets/images/caffe_paris.png",
         "title": "Cafe de Paris",
         "amount": "29.38 AED",
         "date": "17.07.24",
@@ -23,6 +24,7 @@ class BillsPage extends StatelessWidget {
         "status": "red"
       },
       {
+        "image":"assets/images/caffe_paris.png",
         "title": "Cafe de Paris",
         "amount": "19.38 \$",
         "date": "17.07.24",
@@ -34,6 +36,7 @@ class BillsPage extends StatelessWidget {
         "status": "red"
       },
       {
+        "image":"assets/images/globe1.png",
         "title": "Inter. Transfer",
         "amount": "145 \$",
         "date": "17.07.24",
@@ -45,6 +48,7 @@ class BillsPage extends StatelessWidget {
         "status": "green"
       },
       {
+        "image":"assets/images/tower.png",
         "title": "Nat. Transfer",
         "amount": "548 \$",
         "date": "17.07.24",
@@ -59,47 +63,66 @@ class BillsPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        titleSpacing: 0,
-        leading: InkWell(
-        onTap:(){
-          NavigationHelper.pop();
-        },
-        child: const Icon(Icons.arrow_back, color: Colors.black,)),
-        title: Text(
-            'Menu',
-            style: GoogleFonts.secularOne(
-              textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.textBlack,fontSize: 16,
-                fontWeight: FontWeight.w200,),
-            )
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              //NavigationHelper.push(AppRoutes.atahope_screen1);
-              Navigator.of(context).pushNamed(AppRoutes.atahope_screen1);
-            },
-            style: IconButton.styleFrom(
-              backgroundColor: Colors.grey[200], // circular background
-              shape: const CircleBorder(),
-              padding: const EdgeInsets.all(6), // 👈 smaller tap area
-              minimumSize: const Size(24, 24),  // 👈 controls overall button size
+      appBar:  PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: Padding(
+          padding: const EdgeInsets.only(top:20.0),
+          child: AppBar(
+            scrolledUnderElevation: 0,
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            titleSpacing: 0,
+            leading: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onTap: () {
+                NavigationHelper.pop();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(15.0), // optional to give some spacing
+                child: Image.asset(
+                  "assets/images/back.png",      // <-- your asset path
+                  width: 22,
+                  height: 22,
+                ),
+              ),
             ),
-            icon: const Icon(Icons.add, size: 24, color: Colors.black),
-          ),
-          const SizedBox(width: 10),
-          CustomSwitch(
-            value: false,
-            onChanged: (val) {
-              // setState(() => isDark = val);
-              debugPrint('Dark mode: $val');
-            },
-          ),
+            title: Text(
+                'Menu',
+                style: GoogleFonts.libreFranklin(
+                  textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 25,
+                    fontWeight: FontWeight.w400,),
+                )
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  //NavigationHelper.push(AppRoutes.atahope_screen1);
+                  Navigator.of(context).pushNamed(AppRoutes.atahope_screen1);
+                },
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.grey[200], // circular background
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(6),
+                  minimumSize: const Size(24, 24),
+                ),
+                icon: const Icon(Icons.add, size: 24, color: Colors.black),
+              ),
+              const SizedBox(width: 10),
+              CustomSwitch(
+                value: false,
+                onChanged: (val) {
+                  // setState(() => isDark = val);
+                  debugPrint('Dark mode: $val');
+                },
+              ),
 
-          const SizedBox(width: 10),
-        ],
+              const SizedBox(width: 10),
+            ],
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -109,17 +132,19 @@ class BillsPage extends StatelessWidget {
           children: [
             Text(
               "Bills",
-              style: GoogleFonts.secularOne(
-                textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.textBlack,fontSize: 18,
-                  fontWeight: FontWeight.w300,),
+              style: GoogleFonts.libreFranklin(
+                textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                  fontWeight: FontWeight.w400,),
               ),
             ),
+            SizedBox(height: 40,),
             Expanded(
               child: ListView.builder(
                 itemCount: bills.length,
                 itemBuilder: (context, index) {
                   final bill = bills[index];
                   return BillCard(
+                    image: bill["image"]!,
                     title: bill["title"]!,
                     date: bill["date"]!,
                     time: bill["time"]!,
@@ -146,6 +171,7 @@ class BillsPage extends StatelessWidget {
 
 
 class BillCard extends StatelessWidget {
+  final String image;
   final String title;
   final String date;
   final String time;
@@ -158,6 +184,7 @@ class BillCard extends StatelessWidget {
 
   const BillCard({
     super.key,
+    required this.image,
     required this.title,
     required this.date,
     required this.time,
@@ -185,21 +212,21 @@ class BillCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                flex: 1,
+                flex: 13,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.receipt_long,
-                      color: AppColors.black87,
-                      size: 35,
+                    Image.asset(
+                      "assets/images/note.png",
+                      width: 40,
+                      height: 40,
                     ),
                   ],
                 ),
               ),
               // 🧾 Column 1 — Icon + Title + Amount
               Expanded(
-                flex: 2,
+                flex: 25,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -210,16 +237,19 @@ class BillCard extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
-                          child: const Icon(Icons.local_cafe,
-                              color: AppColors.red, size: 14),
+                          child: Image.asset(
+                           image,
+                            width: 20,
+                            height: 20,
+                          ),
                         ),
                         const SizedBox(width: 3),
                         Flexible(
                           child: Text(
                             title,
                             style: GoogleFonts.secularOne(
-                              textStyle: const TextStyle(letterSpacing: .5,color:AppColors.textBlack,fontSize: 13,
-                                fontWeight: FontWeight.w500,),
+                              textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                                fontWeight: FontWeight.w400,),
                             ),
                             softWrap: true,
                           ),
@@ -231,9 +261,9 @@ class BillCard extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         amount,
-                        style: GoogleFonts.secularOne(
-                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                            fontWeight: FontWeight.w100,),
+                        style: GoogleFonts.libreFranklin(
+                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                            fontWeight: FontWeight.w400,),
                         ),
                         softWrap: true,
                       ),
@@ -241,19 +271,19 @@ class BillCard extends StatelessWidget {
                   ],
                 ),
               ),
-
+              const SizedBox(width: 2),
               // 📅 Column 2 — Date + Time
               Expanded(
-                flex: 2,
+                flex: 18,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       date,
-                      style: GoogleFonts.secularOne(
-                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                          fontWeight: FontWeight.w100,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                          fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.center,
@@ -261,9 +291,9 @@ class BillCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       time,
-                      style: GoogleFonts.secularOne(
-                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                          fontWeight: FontWeight.w100,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                          fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.center,
@@ -271,18 +301,18 @@ class BillCard extends StatelessWidget {
                   ],
                 ),
               ),
-
+              const SizedBox(width: 2),
               // 📍 Column 3 — Location + Summary
               Expanded(
-                flex: 2,
+                flex: 22,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       location,
-                      style: GoogleFonts.secularOne(
-                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                          fontWeight: FontWeight.w100,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                          fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -290,9 +320,9 @@ class BillCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       summary,
-                      style: GoogleFonts.secularOne(
-                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                          fontWeight: FontWeight.w100,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                          fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -300,16 +330,17 @@ class BillCard extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(width: 2),
               Expanded(
-                flex: 2,
+                flex: 18,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       location1,
-                      style: GoogleFonts.secularOne(
-                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                          fontWeight: FontWeight.w100,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                          fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,
@@ -317,9 +348,9 @@ class BillCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       summary1,
-                      style: GoogleFonts.secularOne(
-                        textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 11,
-                          fontWeight: FontWeight.w100,),
+                      style: GoogleFonts.libreFranklin(
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                          fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
                       textAlign: TextAlign.end,

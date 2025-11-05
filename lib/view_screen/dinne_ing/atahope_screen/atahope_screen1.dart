@@ -28,47 +28,66 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        titleSpacing: 0,
-        //automaticallyImplyLeading: false,
-        leading: InkWell(
-            onTap:(){
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back, color: Colors.black,)),
-        title: Text(
-          'ATAHOPE',
-            style: GoogleFonts.secularOne(
-              textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.textBlack,fontSize: 16,
-                fontWeight: FontWeight.w200,),
-            )
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-
-            },
-            style: IconButton.styleFrom(
-              backgroundColor: Colors.grey[200], // circular background
-              shape: const CircleBorder(),
-              padding: const EdgeInsets.all(6),
-              minimumSize: const Size(24, 24),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: Padding(
+          padding: const EdgeInsets.only(top:20.0),
+          child: AppBar(
+            scrolledUnderElevation: 0,
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            titleSpacing: 0,
+            //automaticallyImplyLeading: false,
+            leading: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onTap: () {
+                NavigationHelper.pop();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(15.0), // optional to give some spacing
+                child: Image.asset(
+                  "assets/images/back.png",
+                  width: 22,
+                  height: 22,
+                ),
+              ),
             ),
-            icon: const Icon(Icons.add, size: 24, color: Colors.black),
-          ),
-          const SizedBox(width: 10),
-          CustomSwitch(
-            value: false,
-            onChanged: (val) {
-              // setState(() => isDark = val);
-              debugPrint('Dark mode: $val');
-            },
-          ),
+            title: Text(
+              'ATAHOPE',
+                style: GoogleFonts.libreFranklin(
+                  textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 25,
+                    fontWeight: FontWeight.w400,),
+                )
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
 
-          const SizedBox(width: 10),
-        ],
+                },
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.grey[200], // circular background
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(6),
+                  minimumSize: const Size(24, 24),
+                ),
+                icon: const Icon(Icons.add, size: 24, color: Colors.black),
+              ),
+              const SizedBox(width: 10),
+              CustomSwitch(
+                value: false,
+                onChanged: (val) {
+                  // setState(() => isDark = val);
+                  debugPrint('Dark mode: $val');
+                },
+              ),
+
+              const SizedBox(width: 10),
+            ],
+          ),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -84,6 +103,42 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: const [
+                    FoodCard(
+                      image:
+                      "assets/images/double_chicken.png",
+                      title: "Double chicken",
+                      price: "15 AED",
+                    ),
+                    FoodCard(
+                      image:
+                      "assets/images/pizza_mozzarella.png",
+                      title: "Pizza Mozzarella",
+                      price: "20 AED",
+                    ),
+                    FoodCard(
+                      image:
+                      "assets/images/spaghetti_special.png",
+                      title: "Spaghetti Special",
+                      price: "25 AED",
+                    ),
+                    FoodCard(
+                      image:
+                      "assets/images/double_chicken.png",
+                      title: "Double chicken",
+                      price: "15 AED",
+                    ),
+                    FoodCard(
+                      image:
+                      "assets/images/pizza_mozzarella.png",
+                      title: "Pizza Mozzarella",
+                      price: "20 AED",
+                    ),
+                    FoodCard(
+                      image:
+                      "assets/images/spaghetti_special.png",
+                      title: "Spaghetti Special",
+                      price: "25 AED",
+                    ),
                     FoodCard(
                       image:
                       "assets/images/double_chicken.png",
@@ -127,9 +182,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         isExpanded: true,
                         value: selectedLanguage,
                         icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.black87),
-                        style: GoogleFonts.secularOne(
-                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
-                            fontWeight: FontWeight.w100,),
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 20,
+                            fontWeight: FontWeight.w400,),
                         ),
                         dropdownColor: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -162,9 +217,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         isExpanded: true,
                         value: selectedCountry,
                         icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.black87),
-                        style:GoogleFonts.secularOne(
-                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
-                            fontWeight: FontWeight.w100,),
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 20,
+                            fontWeight: FontWeight.w400,),
                         ),
                         dropdownColor: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -209,9 +264,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                             border: InputBorder.none,
                             hintStyle: TextStyle(color: AppColors.black87),
                           ),
-                          style: GoogleFonts.secularOne(
-                            textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
-                              fontWeight: FontWeight.w100,),
+                          style: GoogleFonts.montserrat(
+                            textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 21,
+                              fontWeight: FontWeight.w400,),
                           ),
                           cursorColor: Colors.black,
                         ),
@@ -225,7 +280,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       },
                       child: Container(
                         height: 45,
-                        width: 65,
+                        width: 70,
                         decoration: const BoxDecoration(
                           color: AppColors.purple, // purple background
                           borderRadius: BorderRadius.only(
@@ -237,10 +292,18 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(Icons.search, color: AppColors.black87, size: 20),
-                            SizedBox(width: 6),
-                            Icon(Icons.mic, color: AppColors.black87, size: 20),
+                          children: [
+                            Image.asset(
+                              "assets/images/search.png",
+                              width: 24,
+                              height: 24,
+                            ),
+                            const SizedBox(width: 6),
+                            Image.asset(
+                              "assets/images/microphone.png",
+                              width: 24,
+                              height: 24,
+                            )
                           ],
                         ),
                       ),
@@ -260,18 +323,19 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.gray),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(50),
+                        color: AppColors.gray
                       ),
                       child: TextField(
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
                           hintText: 'From',
                           border: InputBorder.none,
-                          hintStyle: TextStyle(color: AppColors.gray),
+                          hintStyle: TextStyle(color: AppColors.black87),
                         ),
-                        style: GoogleFonts.secularOne(
-                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
-                            fontWeight: FontWeight.w100,),
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 20,
+                            fontWeight: FontWeight.w400,),
                         ),
                         cursorColor: Colors.black,
                       ),
@@ -282,13 +346,17 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                     children: [
                       Text(
                         "Distance",
-                        style: GoogleFonts.secularOne(
-                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
-                            fontWeight: FontWeight.w100,),
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 14,
+                            fontWeight: FontWeight.w400,),
                         ),
                       ),
                       const SizedBox(height: 2),
-                      const Icon(Icons.route, size: 20, color: AppColors.black87),
+                      Image.asset(
+                        "assets/images/distance.png",
+                        width: 30,
+                        height: 30,
+                      )
                     ],
                   ),
                   const SizedBox(width: 10),
@@ -297,18 +365,19 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.gray),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(50),
+                          color: AppColors.gray
                       ),
                       child: TextField(
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
                           hintText: 'To',
                           border: InputBorder.none,
-                          hintStyle: TextStyle(color: AppColors.gray),
+                          hintStyle: TextStyle(color: AppColors.black87),
                         ),
-                        style: GoogleFonts.secularOne(
-                          textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.black87,fontSize: 12,
-                            fontWeight: FontWeight.w100,),
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 20,
+                            fontWeight: FontWeight.w400,),
                         ),
                         cursorColor: Colors.black,
                       ),
@@ -329,29 +398,35 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                     child: SizedBox(
                       height: 400,
                       child: Center(
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 500),
-                          transitionBuilder: (child, anim) => FadeTransition(
-                            opacity: anim,
-                            child: child,
-                          ),
-                          child: ClipRRect(
-                            key: ValueKey<int>(selectedTab),
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.asset(
-                              globeImages[selectedTab],
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.cover,
-                            ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(width: 20),
+                            AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 500),
+                              transitionBuilder: (child, anim) => FadeTransition(
+                                opacity: anim,
+                                child: child,
+                              ),
+                              child: ClipRRect(
+                                key: ValueKey<int>(selectedTab),
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.asset(
+                                  globeImages[selectedTab],
+                                  height: 250,
+                                  width: 250,
+                                  fit: BoxFit.cover,
+                                ),
 
-                          ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
 
-                  const SizedBox(width: 20),
+                  //const SizedBox(width: 20),
 
                   // Right: Fixed vertical tabs
                   Column(
@@ -359,20 +434,26 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                     children: [
                       buildTabButton(
                         index: 0,
-                        icon: Icons.public,
+                        assetPath: "assets/images/globe1.png",
                         activeColor: AppColors.purple,
+                        height: 30,
+                        width: 30
                       ),
                       const SizedBox(height: 12),
                       buildTabButton(
                         index: 1,
-                        icon: Icons.route,
-                        activeColor: Colors.orange,
+                        assetPath: "assets/images/spoon.png",
+                        activeColor: AppColors.purple,
+                        height: 30,
+                        width: 30
                       ),
                       const SizedBox(height: 12),
                       buildTabButton(
                         index: 2,
-                        icon: Icons.explore,
-                        activeColor: Colors.blue,
+                        assetPath: "assets/images/direction.png",
+                        activeColor: AppColors.purple,
+                        height: 30,
+                        width: 30
                       ),
                     ],
                   ),
@@ -387,10 +468,13 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
 
   Widget buildTabButton({
     required int index,
-    required IconData icon,
+    required String assetPath,   // <-- changed
     required Color activeColor,
+    double width = 20,           // <-- optional dynamic size
+    double height = 20,
   }) {
     final bool isSelected = selectedTab == index;
+
     return GestureDetector(
       onTap: () => setState(() => selectedTab = index),
       child: AnimatedContainer(
@@ -398,7 +482,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: isSelected ? activeColor : AppColors.gray,
+          color: isSelected ? activeColor : Colors.transparent,
           boxShadow: isSelected
               ? [
             BoxShadow(
@@ -410,14 +494,19 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
               : [],
         ),
         padding: const EdgeInsets.all(8),
-        child: Icon(
-          icon,
-          color: isSelected ? AppColors.white : AppColors.black54,
-          size: 20,
+        child: SizedBox(
+          width: width,
+          height: height,
+          child: Image.asset(
+            assetPath,
+            fit: BoxFit.contain,
+            color: isSelected ? AppColors.white : AppColors.black54, // tint color
+          ),
         ),
       ),
     );
   }
+
 }
 
 // ===== FOOD CARD WIDGET =====
@@ -435,7 +524,7 @@ class FoodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 110,
+      width: 120,
       margin: const EdgeInsets.only(right: 12),
       child: Column(
         children: [
@@ -447,15 +536,15 @@ class FoodCard extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: GoogleFonts.secularOne(
-              textStyle: const TextStyle(letterSpacing: .5,color:AppColors.black87,fontSize: 12,
-                fontWeight: FontWeight.w100,),
+            style: GoogleFonts.montserrat(
+              textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                fontWeight: FontWeight.w400,),
             ),
           ),
           Text(
             price,
             style: GoogleFonts.secularOne(
-              textStyle: const TextStyle(letterSpacing: 1.0,color:AppColors.red,fontSize: 12,
+              textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.red,fontSize: 15,
                 fontWeight: FontWeight.w400,),
             ),
           ),

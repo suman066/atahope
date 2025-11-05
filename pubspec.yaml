@@ -69,16 +69,32 @@ flutter:
     - assets/images/splash.png
     - assets/images/delivery.png
     - assets/images/dinne-ing.png
+    - assets/images/back.png
+    - assets/images/note.png
+    - assets/images/caffe_paris.png
+    - assets/images/globe1.png
+    - assets/images/tower.png
+    - assets/images/bill.png
+    - assets/images/check.png
+    - assets/images/camera.png
+    - assets/images/message.png
+    - assets/images/profile.png
     - assets/images/spaghetti_special.png
     - assets/images/double_chicken.png
     - assets/images/globe.png
     - assets/images/pizza_mozzarella.png
+    - assets/images/microphone.png
+    - assets/images/search.png
+    - assets/images/distance.png
+    - assets/images/spoon.png
+    - assets/images/direction.png
     - assets/images/s1.png
     - assets/images/s2.png
     - assets/images/s3.png
     - assets/images/s4.png
     - assets/svg/delivery_img.svg
     - assets/svg/dinne_img.svg
+    - assets/svg/ff.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
