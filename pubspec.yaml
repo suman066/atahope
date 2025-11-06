@@ -82,6 +82,12 @@ flutter:
     - assets/images/spaghetti_special.png
     - assets/images/double_chicken.png
     - assets/images/globe.png
+    - assets/images/glob_full.png
+    - assets/images/cart_icon.png
+    - assets/images/discount_icon.png
+    - assets/images/upgrade_icon.png
+    - assets/images/zoom_in_icon.png
+    - assets/images/zoom_out_icon.png
     - assets/images/pizza_mozzarella.png
     - assets/images/microphone.png
     - assets/images/search.png

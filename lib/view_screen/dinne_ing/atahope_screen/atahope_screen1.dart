@@ -19,9 +19,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
 
 
   final List<String> globeImages = [
-    "assets/images/globe.png", // Globe
-    "assets/images/globe.png", // Map
-    "assets/images/globe.png", // Satellite
+    "assets/images/glob_full.png", // Globe
+    "assets/images/glob_full.png", // Map
+    "assets/images/glob_full.png", // Satellite
   ];
 
   @override
@@ -44,12 +44,12 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
               highlightColor: Colors.transparent,
               hoverColor: Colors.transparent,
               onTap: () {
-                NavigationHelper.pop();
+                Navigator.pop(context);
               },
               child: Padding(
                 padding: const EdgeInsets.all(15.0), // optional to give some spacing
                 child: Image.asset(
-                  "assets/images/back.png",
+                  "assets/images/splash.png",
                   width: 22,
                   height: 22,
                 ),
@@ -73,7 +73,11 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                   padding: const EdgeInsets.all(6),
                   minimumSize: const Size(24, 24),
                 ),
-                icon: const Icon(Icons.add, size: 24, color: Colors.black),
+                icon: Image.asset(
+                  "assets/images/cart_icon.png",
+                  width: 22,
+                  height: 22,
+                ),
               ),
               const SizedBox(width: 10),
               CustomSwitch(
@@ -393,6 +397,30 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.gray),
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.gray
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "assets/images/zoom_out_icon.png",
+                            ),
+                            SizedBox(height: 25,),
+                            Image.asset(
+                              "assets/images/zoom_in_icon.png",
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   // Left: Animated globe section
                   Expanded(
                     child: SizedBox(
@@ -413,8 +441,8 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                                 borderRadius: BorderRadius.circular(100),
                                 child: Image.asset(
                                   globeImages[selectedTab],
-                                  height: 250,
-                                  width: 250,
+                                  height: 240,
+                                  width: 240,
                                   fit: BoxFit.cover,
                                 ),
 
@@ -454,6 +482,10 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         activeColor: AppColors.purple,
                         height: 30,
                         width: 30
+                      ),
+                      const SizedBox(height: 50),
+                      Image.asset(
+                        "assets/images/upgrade_icon.png",
                       ),
                     ],
                   ),

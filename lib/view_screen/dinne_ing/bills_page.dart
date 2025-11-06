@@ -211,70 +211,80 @@ class BillCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // 🧾 Column 1 — Icon + Title + Amount
               Expanded(
-                flex: 13,
+                flex: 30,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/note.png",
-                      width: 40,
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-              // 🧾 Column 1 — Icon + Title + Amount
-              Expanded(
-                flex: 25,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+
+                    /// left icons
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Image.asset(
-                           image,
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                        const SizedBox(width: 3),
-                        Flexible(
-                          child: Text(
-                            title,
-                            style: GoogleFonts.secularOne(
-                              textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
-                                fontWeight: FontWeight.w400,),
-                            ),
-                            softWrap: true,
-                          ),
-                        ),
+                        Image.asset("assets/images/note.png", width: 28, height: 28),
                       ],
                     ),
-                    const SizedBox(height: 3),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        amount,
-                        style: GoogleFonts.libreFranklin(
-                          textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
-                            fontWeight: FontWeight.w400,),
-                        ),
-                        softWrap: true,
+
+                    const SizedBox(width: 6),
+
+                    /// title + amount stacked — both auto wrap
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(image, width: 16, height: 16),
+                              SizedBox(width: 2),
+                              Flexible(
+                                child: Text(
+                                  title,
+                                  softWrap: true,
+                                  overflow: TextOverflow.visible,
+                                  maxLines: 5,
+                                  style: GoogleFonts.secularOne(
+                                    textStyle: const TextStyle(
+                                      color: AppColors.textBlack,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 3),
+
+                          Text(
+                            amount,
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 5,
+                            style: GoogleFonts.libreFranklin(
+                              textStyle: const TextStyle(
+                                color: AppColors.textBlack,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+
                   ],
                 ),
               ),
+
+
               const SizedBox(width: 2),
               // 📅 Column 2 — Date + Time
               Expanded(
-                flex: 18,
+                flex: 20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
