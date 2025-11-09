@@ -1,6 +1,6 @@
 import 'package:atahope/helper/navigation_helper/navigation_helper.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen1.dart';
-import 'package:atahope/view_screen/dinne_ing/atahope_screen/s1.dart';
+import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen2.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/s2.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/s3.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/s4.dart';
@@ -75,8 +75,8 @@ class _DinneIngPageState extends State<DinneIngPage> {
         // Example: handle subpages here
         if (settings.name == AppRoutes.atahope_screen1) {
           page = const AtahopeScreen1();
-        }else if(settings.name == AppRoutes.s1) {
-          page = const s1();
+        }else if(settings.name == AppRoutes.atahopeScreen2) {
+          page = const AtahopeScreen2();
         }
         else if(settings.name == AppRoutes.s2) {
           page = const s2();

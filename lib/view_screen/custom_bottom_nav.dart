@@ -50,12 +50,41 @@ class CustomBottomNav extends StatelessWidget {
       child: IconButton(
         onPressed: () => onTap(index),
         icon: SizedBox(
+          //width: width,
+          //height: height,
+          child: Image.asset(
+            assetPath,
+            fit: BoxFit.contain,
+            color: isSelected ? AppColors.white : AppColors.black87, // remove if no tint
+          ),
+        ),
+        splashRadius: width, // optional
+      ),
+    );
+  }
+  Widget _buildNavItem1(
+      String assetPath,
+      int index, {
+        Color? activeColor,
+        double width = 45,
+        double height = 40,
+      }) {
+    final bool isSelected = currentIndex == index;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: isSelected ? (activeColor ?? AppColors.purple) : Colors.transparent,
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        onPressed: () => onTap(index),
+        icon: SizedBox(
           width: width,
           height: height,
           child: Image.asset(
             assetPath,
             fit: BoxFit.contain,
-            color: isSelected ? AppColors.white : AppColors.black87, // remove if no tint
+            color: isSelected ? AppColors.white : null, // remove if no tint
           ),
         ),
         splashRadius: width, // optional
@@ -71,22 +100,18 @@ class CustomBottomNav extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(index),
       child: Container(
-        padding: const EdgeInsets.all(8),
+        height: 56,
+        width:56,
         decoration: BoxDecoration(
+          color: isSelected ? AppColors.purple : Colors.transparent,
           shape: BoxShape.circle,
-          color: Colors.transparent,
-          border: Border.all(
-            color: Colors.tealAccent,
-            width: 2,
-          ),
         ),
-        child: SizedBox(
-          width: 40,
-          height: 40,
+        child: Padding(
+          padding: const EdgeInsets.all(1.0),
           child: Image.asset(
-            "assets/images/camera.png",
+            "assets/images/camera_icon.png",
+            color: isSelected ? AppColors.white : null,
             fit: BoxFit.contain,
-            color: isSelected ? AppColors.white : AppColors.black87, // remove if no tint
           ),
         ),
       ),

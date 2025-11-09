@@ -22,6 +22,8 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
     "assets/images/glob_full.png", // Globe
     "assets/images/glob_full.png", // Map
     "assets/images/glob_full.png", // Satellite
+    "assets/images/glob_full.png",
+    "assets/images/glob_full.png",
   ];
 
   @override
@@ -280,7 +282,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                     // 🔹 Right-side circle with icons
                     InkWell(
                       onTap: (){
-                        Navigator.of(context).pushNamed(AppRoutes.s1);
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen2);
                       },
                       child: Container(
                         height: 45,
@@ -483,9 +485,21 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         height: 30,
                         width: 30
                       ),
-                      const SizedBox(height: 50),
-                      Image.asset(
-                        "assets/images/upgrade_icon.png",
+                      const SizedBox(height: 12),
+                      buildTabButton(
+                          index: 2,
+                          assetPath: "assets/images/c_tab.png",
+                          activeColor: AppColors.purple,
+                          height: 30,
+                          width: 30
+                      ),
+                      const SizedBox(height: 12),
+                      buildTabButton(
+                          index: 2,
+                          assetPath: "assets/images/upgrade_icon.png",
+                          activeColor: AppColors.purple,
+                          height: 30,
+                          width: 30
                       ),
                     ],
                   ),

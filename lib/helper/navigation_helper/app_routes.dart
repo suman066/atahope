@@ -22,7 +22,7 @@ class AppRoutes {
   static const String chat = '/dinneIng/chat';
   static const String profile = '/dinneIng/profile';
   static const String atahope_screen1 = '/dinneIng/atahope_screen1';
-  static const String s1 = '/dinneIng/atahope_screen1/s1';
+  static const String atahopeScreen2 = '/dinneIng/atahope_screen1/atahopeScreen2';
   static const String s2 = '/dinneIng/atahope_screen1/s2';
   static const String s3 = '/dinneIng/atahope_screen1/s3';
   static const String s4 = '/dinneIng/atahope_screen1/s4';
