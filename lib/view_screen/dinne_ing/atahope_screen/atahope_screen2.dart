@@ -16,7 +16,7 @@ class AtahopeScreen2 extends StatefulWidget {
 class _AtahopeScreen2State extends State<AtahopeScreen2> {
   int selectedTab = 0;
   final ValueNotifier<int> selectedRestaurantTab = ValueNotifier(0);
-
+  final ValueNotifier<int> selectedCafetariaTab = ValueNotifier(0);
   String selectedLanguage = "EN";
   String selectedCountry = "AE";
   final TextEditingController fromController = TextEditingController();
@@ -314,123 +314,103 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                 ),
               ),
               const SizedBox(height: 10),
-              // ===== GLOBE SECTION (TABS FIXED ON RIGHT) =====
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left:8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.gray),
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.gray
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                "assets/images/zoom_out_icon.png",
-                              ),
-                              SizedBox(height: 25,),
-                              Image.asset(
-                                "assets/images/zoom_in_icon.png",
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Left: Animated globe section
-                  Expanded(
-                    child: SizedBox(
-                      height: 400,
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(width: 20),
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 500),
-                              transitionBuilder: (child, anim) => FadeTransition(
-                                opacity: anim,
-                                child: child,
-                              ),
-                              child: ClipRRect(
-                                key: ValueKey<int>(selectedTab),
-                                borderRadius: BorderRadius.circular(100),
-                                child: Image.asset(
-                                  globeImages[selectedTab],
-                                  height: 240,
-                                  width: 240,
-                                  fit: BoxFit.cover,
-                                ),
-
-                              ),
-                            ),
-                          ],
-                        ),
+              SizedBox(
+                height: 490,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left:16.0, right: 16.0),
+                      child: buildRestaurantTabButton(
+                          index: 0,
+                          assetPath: "assets/images/cafetaria.png",
+                          activeColor: AppColors.purple,
+                          title: "105 Cafeteria’s"
                       ),
                     ),
-                  ),
+                    Expanded(
+                      child: ValueListenableBuilder<int>(
+                        valueListenable: selectedCafetariaTab,
+                        builder: (context, value, _) {
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.sizeOf(context).width-65,
+                                  child: AnimatedSwitcher(
+                                      duration: const Duration(milliseconds: 500),
+                                      transitionBuilder: (child, anim) => FadeTransition(
+                                        opacity: anim,
+                                        child: child,
+                                      ),
+                                      child: CafetariaScroll()
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right:8.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      buildTabButton(
+                                          index: 0,
+                                          assetPath: "assets/images/globe1.png",
+                                          activeColor: AppColors.purple,
+                                          height: 30,
+                                          width: 30
+                                      ),
+                                      const SizedBox(height: 12),
+                                      buildTabButton(
+                                          index: 1,
+                                          assetPath: "assets/images/spoon.png",
+                                          activeColor: AppColors.purple,
+                                          height: 30,
+                                          width: 30
+                                      ),
+                                      const SizedBox(height: 12),
+                                      buildTabButton(
+                                          index: 2,
+                                          assetPath: "assets/images/direction.png",
+                                          activeColor: AppColors.purple,
+                                          height: 30,
+                                          width: 30
+                                      ),
+                                      const SizedBox(height: 12),
+                                      buildTabButton(
+                                          index: 3,
+                                          assetPath: "assets/images/c_tab.png",
+                                          activeColor: AppColors.purple,
+                                          height: 30,
+                                          width: 30
+                                      ),
+                                      buildTabButton(
+                                          index: 4,
+                                          assetPath: "assets/images/upgrade_icon.png",
+                                          activeColor: AppColors.purple,
+                                          height: 30,
+                                          width: 30
+                                      ),
 
-                  //const SizedBox(width: 20),
+                                    ],
+                                  ),
+                                ),
 
-                  // Right: Fixed vertical tabs
-                  Padding(
-                    padding: const EdgeInsets.only(right:8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildTabButton(
-                            index: 0,
-                            assetPath: "assets/images/globe1.png",
-                            activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
-                        ),
-                        const SizedBox(height: 12),
-                        buildTabButton(
-                            index: 1,
-                            assetPath: "assets/images/spoon.png",
-                            activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
-                        ),
-                        const SizedBox(height: 12),
-                        buildTabButton(
-                            index: 2,
-                            assetPath: "assets/images/direction.png",
-                            activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
-                        ),
-                        const SizedBox(height: 12),
-                        buildTabButton(
-                            index: 3,
-                            assetPath: "assets/images/c_tab.png",
-                            activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
-                        ),
-                        buildTabButton(
-                            index: 4,
-                            assetPath: "assets/images/upgrade_icon.png",
-                            activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
-                        ),
-
-                      ],
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                    Align(
+                      alignment: Alignment.center,
+                        child: Image.asset("assets/images/c3.png")),
+                  ],
+                ),
               ),
+
             ],
           ),
         ),
@@ -564,7 +544,7 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
   @override
   void initState() {
     super.initState();
-    controller = PageController(viewportFraction: 0.5, initialPage: 1);
+    controller = PageController(viewportFraction: 0.6, initialPage: 1);
   }
 
   int mappedIndex(int i) {
@@ -695,5 +675,168 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
   }
 }
 
+// ===== MODEL =====
+class Cafetaria {
+  final String title;
+  final String image;
+  final String image1;
+  final int distance;
 
+  Cafetaria({required this.title, required this.image, required this.distance, required this.image1});
+}
+// ===== SAMPLE DATA =====
+final List<Cafetaria> cafetaria = [
+  Cafetaria(title: "Beirut Coffee",image: "assets/images/c4.png", image1: "assets/images/c1.png", distance: 15),
+  Cafetaria(title: "Coffee Lounge",image: "assets/images/c5.png", image1: "assets/images/c2.png", distance: 20),
+  Cafetaria(title: "Beirut Coffee",image: "assets/images/c4.png", image1: "assets/images/c1.png", distance: 15),
+  Cafetaria(title: "Coffee Lounge",image: "assets/images/c5.png", image1: "assets/images/c2.png", distance: 20),
+  Cafetaria(title: "Beirut Coffee",image: "assets/images/c4.png", image1: "assets/images/c1.png", distance: 15),
+  Cafetaria(title: "Coffee Lounge",image: "assets/images/c5.png", image1: "assets/images/c2.png", distance: 20),
+];
+
+// ===== MAIN WIDGET =====
+class CafetariaScroll extends StatefulWidget {
+  const CafetariaScroll({super.key});
+
+  @override
+  State<CafetariaScroll> createState() => _CafetariaScrollState();
+}
+
+class _CafetariaScrollState extends State<CafetariaScroll> {
+  late PageController controller;
+  ValueNotifier<int> currentIndex = ValueNotifier(0);
+
+  @override
+  void initState() {
+    super.initState();
+    controller = PageController(viewportFraction: 0.6, initialPage: 1);
+  }
+
+  int mappedIndex(int i) {
+    if (i == 0) return restaurants.length - 1;
+    if (i == restaurants.length + 1) return 0;
+    return i - 1;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      child: ValueListenableBuilder<int>(
+        valueListenable: currentIndex,
+        builder: (context, value, _) {
+          return Row(
+            children: [
+              /// LEFT ARROW
+              IconButton(
+                icon: Image.asset("assets/images/r_back.png"),
+                onPressed: () {
+                  currentIndex.value--;
+                  controller.animateToPage(
+                    currentIndex.value + 1,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+
+              /// PAGE VIEW
+              Expanded(
+                child: PageView.builder(
+                  controller: controller,
+                  itemCount: cafetaria.length + 2,
+                  onPageChanged: (page) {
+                    if (page == 0) {
+                      Future.microtask(() => controller.jumpToPage(cafetaria.length));
+                      currentIndex.value = cafetaria.length - 1;
+                    } else if (page == cafetaria.length + 1) {
+                      Future.microtask(() => controller.jumpToPage(1));
+                      currentIndex.value = 0;
+                    } else {
+                      currentIndex.value = page - 1;
+                    }
+                  },
+                  itemBuilder: (context, i) {
+                    final r = cafetaria[mappedIndex(i)];
+                    final double pad = (mappedIndex(i) == currentIndex.value) ? 20 : 0;
+
+                    return Padding(
+                      padding: EdgeInsets.only(top: pad),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          /// TITLE
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(r.image),
+                              const SizedBox(width: 4),
+                              Flexible(
+                                child: Text(
+                                  r.title,
+                                  style: GoogleFonts.secularOne(
+                                    textStyle: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+
+                          /// IMAGE
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(r.image1, fit: BoxFit.cover),
+                          ),
+
+                          /// bottom arrows + distance
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/images/f1.png"),
+                              Image.asset("assets/images/f2.png"),
+                              Text(
+                                "${r.distance}m",
+                                style: GoogleFonts.secularOne(
+                                  textStyle: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+
+              /// RIGHT ARROW
+              IconButton(
+                icon: Image.asset("assets/images/r_forward.png"),
+                onPressed: () {
+                  currentIndex.value++;
+                  controller.animateToPage(
+                    currentIndex.value + 1,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
 
