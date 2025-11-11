@@ -203,7 +203,7 @@ class BillCard extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
           decoration: BoxDecoration(
             color: AppColors.gray,
             borderRadius: BorderRadius.circular(12),
@@ -213,7 +213,7 @@ class BillCard extends StatelessWidget {
             children: [
               // 🧾 Column 1 — Icon + Title + Amount
               Expanded(
-                flex: 30,
+                flex: 45,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -234,7 +234,7 @@ class BillCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Image.asset(image, width: 16, height: 16),
@@ -248,7 +248,7 @@ class BillCard extends StatelessWidget {
                                   style: GoogleFonts.secularOne(
                                     textStyle: const TextStyle(
                                       color: AppColors.textBlack,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -259,18 +259,25 @@ class BillCard extends StatelessWidget {
 
                           const SizedBox(height: 3),
 
-                          Text(
-                            amount,
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 5,
-                            style: GoogleFonts.libreFranklin(
-                              textStyle: const TextStyle(
-                                color: AppColors.textBlack,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                amount,
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                maxLines: 5,
+                                style: GoogleFonts.libreFranklin(
+                                  textStyle: const TextStyle(
+                                    color: AppColors.textBlack,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
@@ -284,7 +291,7 @@ class BillCard extends StatelessWidget {
               const SizedBox(width: 2),
               // 📅 Column 2 — Date + Time
               Expanded(
-                flex: 20,
+                flex: 18,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -292,7 +299,7 @@ class BillCard extends StatelessWidget {
                     Text(
                       date,
                       style: GoogleFonts.libreFranklin(
-                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 10,
                           fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
@@ -302,7 +309,7 @@ class BillCard extends StatelessWidget {
                     Text(
                       time,
                       style: GoogleFonts.libreFranklin(
-                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 10,
                           fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
@@ -314,14 +321,14 @@ class BillCard extends StatelessWidget {
               const SizedBox(width: 2),
               // 📍 Column 3 — Location + Summary
               Expanded(
-                flex: 22,
+                flex: 18,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       location,
                       style: GoogleFonts.libreFranklin(
-                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 10,
                           fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
@@ -331,7 +338,7 @@ class BillCard extends StatelessWidget {
                     Text(
                       summary,
                       style: GoogleFonts.libreFranklin(
-                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 10,
                           fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
@@ -349,7 +356,7 @@ class BillCard extends StatelessWidget {
                     Text(
                       location1,
                       style: GoogleFonts.libreFranklin(
-                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 10,
                           fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
@@ -359,7 +366,7 @@ class BillCard extends StatelessWidget {
                     Text(
                       summary1,
                       style: GoogleFonts.libreFranklin(
-                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 15,
+                        textStyle: const TextStyle(fontStyle: FontStyle.normal,color:AppColors.textBlack,fontSize: 10,
                           fontWeight: FontWeight.w400,),
                       ),
                       softWrap: true,
