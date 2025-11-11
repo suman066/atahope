@@ -42,6 +42,8 @@ class _s4State extends State<s4> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
           child: const Icon(Icons.arrow_back, color: Colors.black),
@@ -100,7 +102,7 @@ class _s4State extends State<s4> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: _buildCategoryTabs(),
@@ -177,7 +179,7 @@ class _s4State extends State<s4> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
-                color: AppColors.purple,
+                color: AppColors.gray,
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Text(
@@ -196,9 +198,9 @@ class _s4State extends State<s4> {
             right: 0,
             child: Center(
               child: Container(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
+                  color: AppColors.purple,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Image.asset("assets/images/filter.png", fit: BoxFit.cover,),
