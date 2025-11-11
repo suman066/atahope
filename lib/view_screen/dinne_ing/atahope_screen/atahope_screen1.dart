@@ -248,7 +248,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
 
 
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
 
               // ===== SEARCH BAR =====
               Container(
@@ -318,7 +318,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
 
               // ===== FROM - TO TEXTFIELDS + DISTANCE =====
               Row(

@@ -1,8 +1,7 @@
 import 'package:atahope/helper/navigation_helper/navigation_helper.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen1.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen2.dart';
-import 'package:atahope/view_screen/dinne_ing/atahope_screen/s2.dart';
-import 'package:atahope/view_screen/dinne_ing/atahope_screen/s3.dart';
+import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen3.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/s4.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/s5.dart';
 import 'package:flutter/foundation.dart';
@@ -78,11 +77,8 @@ class _DinneIngPageState extends State<DinneIngPage> {
         }else if(settings.name == AppRoutes.atahopeScreen2) {
           page = const AtahopeScreen2();
         }
-        else if(settings.name == AppRoutes.s2) {
-          page = const s2();
-        }
-        else if(settings.name == AppRoutes.s3) {
-          page = const s3();
+        else if(settings.name == AppRoutes.atahopeScreen3) {
+          page = const AtahopeScreen3();
         }
         else if(settings.name == AppRoutes.s4) {
           page = const s4();

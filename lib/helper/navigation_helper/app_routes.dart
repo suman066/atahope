@@ -1,4 +1,6 @@
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen1.dart';
+import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen2.dart';
+import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen3.dart';
 import 'package:atahope/view_screen/dinne_ing/bills_page.dart';
 import 'package:atahope/view_screen/dinne_ing/chat_page.dart';
 import 'package:atahope/view_screen/dinne_ing/check_page.dart';
@@ -23,7 +25,7 @@ class AppRoutes {
   static const String profile = '/dinneIng/profile';
   static const String atahope_screen1 = '/dinneIng/atahope_screen1';
   static const String atahopeScreen2 = '/dinneIng/atahope_screen1/atahopeScreen2';
-  static const String s2 = '/dinneIng/atahope_screen1/s2';
+  static const String atahopeScreen3 = '/dinneIng/atahope_screen1/atahopeScreen3';
   static const String s3 = '/dinneIng/atahope_screen1/s3';
   static const String s4 = '/dinneIng/atahope_screen1/s4';
   static const String s5 = '/dinneIng/atahope_screen1/s5';
@@ -104,6 +106,10 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
         return const ProfilePage();
       case AppRoutes.atahope_screen1:
         return const AtahopeScreen1();
+      case AppRoutes.atahopeScreen2:
+        return const AtahopeScreen2();
+      case AppRoutes.atahopeScreen3:
+        return const AtahopeScreen3();
       case AppRoutes.splash:
       default:
         return const SplashScreenPage();

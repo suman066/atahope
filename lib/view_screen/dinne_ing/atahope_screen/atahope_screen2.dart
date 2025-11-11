@@ -1,7 +1,8 @@
 import 'package:atahope/Constants/constants.dart';
 import 'package:atahope/helper/navigation_helper/app_routes.dart';
 import 'package:atahope/view_screen/custom_switch.dart';
-import 'package:atahope/view_screen/dinne_ing/atahope_screen/s2.dart' show s2;
+import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen3.dart'
+    show s2;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,7 +72,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
             actions: [
               IconButton(
                 onPressed: () {
-
+                  Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
                 },
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.grey[200], // circular background
@@ -141,7 +142,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                       // 🔹 Right-side circle with icons
                       InkWell(
                         onTap: (){
-                          Navigator.of(context).pushNamed(AppRoutes.atahopeScreen2);
+
                         },
                         child: Container(
                           height: 45,
@@ -172,7 +173,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
 
               // ===== FROM - TO TEXTFIELDS + DISTANCE =====
               Padding(

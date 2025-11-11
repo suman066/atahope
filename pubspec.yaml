@@ -119,6 +119,23 @@ flutter:
     - assets/images/r_forward.png
     - assets/images/c4.png
     - assets/images/c5.png
+    - assets/images/dc1.png
+    - assets/images/dc2.png
+    - assets/images/dc3.png
+    - assets/images/dc4.png
+    - assets/images/bs1.png
+    - assets/images/bs2.png
+    - assets/images/bs3.png
+    - assets/images/wait.png
+    - assets/images/m1.png
+    - assets/images/m2.png
+    - assets/images/m3.png
+    - assets/images/m4.png
+    - assets/images/m5.png
+    - assets/images/m6.png
+    - assets/images/money.png
+    - assets/images/filter.png
+
 
 
 
