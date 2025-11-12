@@ -46,7 +46,14 @@ class _s4State extends State<s4> {
         surfaceTintColor: Colors.transparent,
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: const Icon(Icons.arrow_back, color: Colors.black),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0), // optional to give some spacing
+            child: Image.asset(
+              "assets/images/back.png",      // <-- your asset path
+              width: 22,
+              height: 22,
+            ),
+          ),
         ),
         centerTitle: true,
         title: Column(
@@ -74,12 +81,14 @@ class _s4State extends State<s4> {
               ),
             ),
             const SizedBox(height: 4),
-            const Text(
+            Text(
               "Cafe de Paris",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
+              style: GoogleFonts.secularOne(
+                textStyle: const TextStyle(
+                  color: AppColors.textBlack,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ],
@@ -197,13 +206,18 @@ class _s4State extends State<s4> {
           Positioned(
             right: 0,
             child: Center(
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: AppColors.purple,
-                  borderRadius: BorderRadius.circular(30),
+              child: InkWell(
+                onTap: (){
+                  Navigator.of(context).pushNamed(AppRoutes.s5);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.purple,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Image.asset("assets/images/filter.png", fit: BoxFit.cover,),
                 ),
-                child: Image.asset("assets/images/filter.png", fit: BoxFit.cover,),
               ),
             ),
           ),

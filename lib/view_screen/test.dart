@@ -1,222 +1,165 @@
 import 'package:flutter/material.dart';
 
-class FoodMenuPage extends StatefulWidget {
-  const FoodMenuPage({super.key});
-
-  @override
-  State<FoodMenuPage> createState() => _FoodMenuPageState();
-}
-
-class _FoodMenuPageState extends State<FoodMenuPage> {
-  int selectedCategory = 0;
-  final List<String> categories = [
-    'Appetizers',
-    'Beverages',
-    'Desserts',
-    'Main course',
-    'Side',
-    'Special',
-  ];
-
-  final List<Map<String, dynamic>> meatItems = [
-    {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'https://picsum.photos/200'},
-    {'name': 'Roma', 'price': '5 AED', 'time': '10m', 'image': 'https://picsum.photos/210'},
-    {'name': 'Silmont', 'price': '2.5 AED', 'time': '12m', 'image': 'https://picsum.photos/220'},
-    {'name': 'Buda', 'price': '5 AED', 'time': '6m', 'image': 'https://picsum.photos/230'},
-  ];
-
-  final List<Map<String, dynamic>> meatlessItems = [
-    {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'https://picsum.photos/240'},
-    {'name': 'Rabat', 'price': '10 AED', 'time': '6m', 'image': 'https://picsum.photos/250'},
-    {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'https://picsum.photos/260'},
-    {'name': 'Rabat', 'price': '10 AED', 'time': '6m', 'image': 'https://picsum.photos/270'},
-  ];
+class BurgerBitesScreen extends StatelessWidget {
+  const BurgerBitesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          // Sticky Header (Category Tabs)
-          SliverAppBar(
-            pinned: true,
-            backgroundColor: Colors.white,
-            elevation: 2,
-            automaticallyImplyLeading: false,
-            title: _buildCategoryTabs(),
-          ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 8),
 
-          // Scrollable Content
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildSectionTitle('Meatness'),
-                  const SizedBox(height: 10),
-                  _buildFoodList(meatItems),
-                  const SizedBox(height: 25),
-                  _buildSectionTitle('Meatless'),
-                  const SizedBox(height: 10),
-                  _buildFoodList(meatlessItems),
-                  const SizedBox(height: 30),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCategoryTabs() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(categories.length, (index) {
-          final isSelected = selectedCategory == index;
-          return GestureDetector(
-            onTap: () => setState(() => selectedCategory = index),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              margin: const EdgeInsets.only(right: 12),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: isSelected ? Colors.purple : Colors.transparent,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Text(
-                categories[index],
+              // Title
+              const Text(
+                "Burger Bites",
                 style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.black87,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          );
-        }),
+              const SizedBox(height: 16),
+
+              // Burger with tags around it
+              Center(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Burger image
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        'assets/burger.png',
+                        height: 160,
+                        width: 160,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    // Surrounding tags
+                    Positioned(top: 0, child: _buildTag("Bun")),
+                    Positioned(bottom: 0, child: _buildTag("Salad")),
+                    Positioned(left: 0, child: _buildTag("Cheese")),
+                    Positioned(right: 0, child: _buildTag("Tomatoes")),
+                    Positioned(top: 30, left: 30, child: _buildTag("Steak")),
+                    Positioned(top: 30, right: 30, child: _buildTag("Sauce")),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // Extra Sauce Section
+              _buildSectionHeader("Extra Sauce", count: 1),
+              const SizedBox(height: 10),
+              _buildHorizontalList([
+                'assets/pepperoni.png',
+                'assets/caviar.png',
+                'assets/tomato.png',
+                'assets/mayonesa.png',
+                'assets/yassa.png',
+              ]),
+
+              const SizedBox(height: 25),
+
+              // Suggestion Section
+              _buildSectionHeader("Suggestion", count: 2),
+              const SizedBox(height: 10),
+              _buildHorizontalList([
+                'assets/coke.png',
+                'assets/beer.png',
+                'assets/pepsi.png',
+                'assets/wine.png',
+              ]),
+
+              const SizedBox(height: 25),
+
+              // Desserts
+              _buildHorizontalList([
+                'assets/cake1.png',
+                'assets/cake2.png',
+                'assets/cake3.png',
+                'assets/cake4.png',
+              ]),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  // Tag widget
+  Widget _buildTag(String title) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        title,
+        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 13),
+      ),
+    );
+  }
+
+  // Section title with badge
+  Widget _buildSectionHeader(String title, {int count = 0}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(25),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 15,
-              color: Colors.black,
+        ),
+        if (count > 0)
+          Container(
+            margin: const EdgeInsets.only(left: 6),
+            padding: const EdgeInsets.all(4),
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle,
+            ),
+            child: Text(
+              count.toString(),
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-        const SizedBox(width: 8),
-        Container(
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: const Icon(Icons.filter_alt_outlined, size: 20),
-        ),
       ],
     );
   }
 
-  Widget _buildFoodList(List<Map<String, dynamic>> items) {
+  // Horizontal list of images
+  Widget _buildHorizontalList(List<String> imagePaths) {
     return SizedBox(
-      height: 300, // Two rows like image
-      child: ListView.builder(
+      height: 80,
+      child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemCount: (items.length / 2).ceil(),
-        itemBuilder: (context, i) {
-          final start = i * 2;
-          final end = (start + 2).clamp(0, items.length);
-          final rowItems = items.sublist(start, end);
-
-          return Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Column(
-              children: [
-                Row(children: rowItems.map((item) => _buildFoodCard(item)).toList()),
-                const SizedBox(height: 10),
-                if (i == (items.length / 2).floor()) _buildArrowButton(),
-              ],
+        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        itemCount: imagePaths.length,
+        itemBuilder: (context, index) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              imagePaths[index],
+              width: 70,
+              height: 70,
+              fit: BoxFit.cover,
             ),
           );
         },
       ),
-    );
-  }
-
-  Widget _buildFoodCard(Map<String, dynamic> item) {
-    return Container(
-      width: 150,
-      margin: const EdgeInsets.only(right: 12),
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 4,
-            offset: const Offset(1, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              item['image'],
-              height: 70,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(item['name'], style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              const Icon(Icons.wallet, size: 14),
-              const SizedBox(width: 4),
-              Text(item['price'], style: const TextStyle(fontSize: 12)),
-              const Spacer(),
-              const Icon(Icons.timer, size: 14),
-              const SizedBox(width: 4),
-              Text(item['time'], style: const TextStyle(fontSize: 12)),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildArrowButton() {
-    return Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-        shape: BoxShape.circle,
-      ),
-      child: const Icon(Icons.arrow_forward_ios, size: 16),
     );
   }
 }
