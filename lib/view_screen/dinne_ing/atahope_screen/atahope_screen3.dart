@@ -13,9 +13,40 @@ class AtahopeScreen3 extends StatefulWidget {
 }
 
 class _AtahopeScreen3State extends State<AtahopeScreen3> {
+  late PageController _pageController;
+  int currentIndex = 0;
   int selectedTab = 0;
   final TextEditingController fromController = TextEditingController();
   final TextEditingController toController = TextEditingController();
+  List<Map<String, dynamic>> items = [
+    {
+      "title": "Cafe de Paris",
+      "image": "assets/images/r1.png",
+      "time": "15 m",
+      "place": "Marina Canal View Center",
+      "desc":
+      "A contemporary take on recreating the authentic Parisian cafe experience, complete with an ambiance that precisely matches the aesthetics of French culture, we at Café de Paris meticulously work to bring you the core essence of France. Our skilled artisans perfect every indulging entree, dessert, and drink to strike the sweet balance between classic french dining and modernism.",
+    },
+    {
+      "title": "Another Cafe",
+      "image": "assets/images/r1.png",
+      "time": "10 m",
+      "place": "Downtown Center",
+      "desc": "A contemporary take on recreating the authentic Parisian cafe experience, complete with an ambiance that precisely matches the aesthetics of French culture, we at Café de Paris meticulously work to bring you the core essence of France. Our skilled artisans perfect every indulging entree, dessert, and drink to strike the sweet balance between classic french dining and modernism.",
+    },
+    // add more items...
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> doubleChicken = [
@@ -263,112 +294,57 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
               ),
 
               const SizedBox(height: 60),
-              Row(
+            SizedBox(
+              height: 250,
+              child: Row(
                 children: [
+                  // BACK BUTTON
                   IconButton(
                     icon: Image.asset("assets/images/round_back.png"),
                     onPressed: () {
+                      if (currentIndex > 0) {
+                        currentIndex--;
+                        _pageController.animateToPage(
+                          currentIndex,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                        );
+                      }
                     },
                   ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 125,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/cafe.png"),
-                            const SizedBox(width: 4),
-                            Flexible(
-                              child: Text(
-                                "Cafe de paris",
-                                style: GoogleFonts.secularOne(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 20,),
-                      Image.asset("assets/images/r1.png"),
-                      SizedBox(
-                        width: 125,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/f1.png"),
-                            Image.asset("assets/images/f2.png"),
-                            Text(
-                              "15 m",
-                              style: GoogleFonts.secularOne(
-                                textStyle: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(width: 12),
+
+                  // PAGEVIEW CONTENT
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/images/restaurant.png"),
-                            SizedBox(width: 5.0,),
-                            Flexible(
-                              child: Text(
-                                "Marina Canal View Center",
-                                style: GoogleFonts.secularOne(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          "A contemporary take on recreating the authentic Parisian cafe experience, complete with an ambiance that precisely matches the aesthetics of French culture, we at Café de Paris meticulously work to bring you the core essence of France. Our skilled artisans perfect every indulging entree, dessert, and drink to strike the sweet balance between classic french dining and modernism.",
-                          maxLines: 50,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.secularOne(
-                            textStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize:9,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: items.length,
+                      physics: NeverScrollableScrollPhysics(), // disable swipe, only buttons
+                      itemBuilder: (context, index) {
+                        final item = items[index];
+                        return buildYourContent(item); // YOUR ROW CONTENT
+                      },
                     ),
                   ),
+
+                  // FORWARD BUTTON
                   IconButton(
                     icon: Image.asset("assets/images/round_forward.png"),
                     onPressed: () {
+                      if (currentIndex < items.length - 1) {
+                        currentIndex++;
+                        _pageController.animateToPage(
+                          currentIndex,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                        );
+                      }
                     },
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+            ),
+
+            const SizedBox(height: 20),
 
 
               Row(
@@ -383,14 +359,14 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                           padding: const EdgeInsets.only(left:16.0,),
                           child: _buildHorizontalList(doubleChicken,imageWidth: 80),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
 
                         // Section 2: Best Sellers
                         _buildSectionTitle("Best sellers", Colors.purpleAccent),
                         const SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.only(left:16.0,),
-                          child: _buildHorizontalList(bestSellers, imageWidth: 102),
+                          child: _buildHorizontalList(bestSellers, imageWidth: 110),
                         ),
                       ],
                     ),
@@ -477,7 +453,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
 
   Widget _buildHorizontalList(List<Map<String, String>> items, {double imageWidth=80}) {
     return SizedBox(
-      height: 180,
+      height: 170,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -513,7 +489,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 1),
                             Text(
                               item["st1"]!,
                               style: GoogleFonts.sedanSc(
@@ -524,7 +500,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 4,),
+                            SizedBox(height: 1,),
                             Text(
                               item["st2"]!,
                               style: GoogleFonts.sedanSc(
@@ -595,4 +571,110 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
       ),
     );
   }
+
+  Widget buildYourContent(Map<String, dynamic> item) {
+    return Row(
+      children: [
+        Column(
+          children: [
+            SizedBox(
+              width: 125,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/images/cafe.png"),
+                  SizedBox(width: 4),
+                  Flexible(
+                    child: Text(
+                      item["title"],
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.secularOne(
+                        textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 10),
+            Image.asset(item["image"]),
+
+            SizedBox(
+              width: 125,
+              child: Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/wait.png"),
+                    SizedBox(width: 5),
+                    Image.asset("assets/images/f2.png"),
+                    SizedBox(width: 5),
+                    Text(
+                      item["time"],
+                      style: GoogleFonts.secularOne(
+                        textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+
+        SizedBox(width: 12),
+
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Image.asset("assets/images/restaurant.png"),
+                  SizedBox(width: 5),
+                  Flexible(
+                    child: Text(
+                      item["place"],
+                      style: GoogleFonts.secularOne(
+                        textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 6),
+              Text(
+                item["desc"],
+                maxLines: 50,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.secularOne(
+                  textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
 }

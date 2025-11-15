@@ -185,10 +185,15 @@ class _s5State extends State<s5> {
                 {'image': 'assets/images/bb3.png', 'text': ' tomato'},
                 {'image': 'assets/images/bb4.png', 'text': 'Mayosa'},
                 {'image': 'assets/images/bb5.png', 'text': 'yassa'},
+                {'image': 'assets/images/bb1.png', 'text': 'peperonni'},
+                {'image': 'assets/images/bb2.png', 'text': 'Caviar'},
+                {'image': 'assets/images/bb3.png', 'text': ' tomato'},
+                {'image': 'assets/images/bb4.png', 'text': 'Mayosa'},
+                {'image': 'assets/images/bb5.png', 'text': 'yassa'},
               ],
-              height:79.0,width:50.0),
+              height:79.0,width:50.0,gap: 12.0),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 10),
 
               // Suggestion Section
               _buildSectionHeader("Suggestion", count: 2),
@@ -198,10 +203,14 @@ class _s5State extends State<s5> {
                 {'image': 'assets/images/bb7.png', 'text': ''},
                 {'image': 'assets/images/bb8.png', 'text': ''},
                 {'image': 'assets/images/bb9.png', 'text': ''},
+                {'image': 'assets/images/bb6.png', 'text': ''},
+                {'image': 'assets/images/bb7.png', 'text': ''},
+                {'image': 'assets/images/bb8.png', 'text': ''},
+                {'image': 'assets/images/bb9.png', 'text': ''},
               ],
-              height: 110, width: 53),
+              height: 110, width: 53, gap:30),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
 
               // Desserts
               _buildHorizontalList([
@@ -209,7 +218,11 @@ class _s5State extends State<s5> {
                 {'image': 'assets/images/bb11.png', 'text': ''},
                 {'image': 'assets/images/bb12.png', 'text': ''},
                 {'image': 'assets/images/bb13.png', 'text': ''},
-              ], height: 103, width: 75),
+                {'image': 'assets/images/bb10.png', 'text': ''},
+                {'image': 'assets/images/bb11.png', 'text': ''},
+                {'image': 'assets/images/bb12.png', 'text': ''},
+                {'image': 'assets/images/bb13.png', 'text': ''},
+              ], height: 103, width: 75,gap: 12.0),
               const SizedBox(height: 50),
             ],
           ),
@@ -286,50 +299,103 @@ class _s5State extends State<s5> {
   }
 
 
-  // Horizontal list of images
-  Widget _buildHorizontalList(List<Map<String, String>> items, {double height=51, double width=50}) {
+  Widget _buildHorizontalList(
+      List<Map<String, String>> items,
+      {double height = 51, double width = 50, double gap = 12}
+      ) {
+    final ScrollController _controller = ScrollController();
+    double itemExtent = width + 12; // item width + spacing
+    int currentIndex = 0;
+
+    // Scroll to a specific index
+    void scrollToIndex(int index) {
+      _controller.animateTo(
+        index * itemExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+
+    // Listen to manual scroll to update index
+    _controller.addListener(() {
+      currentIndex = (_controller.offset / itemExtent).round();
+    });
+
     return SizedBox(
-      height: height,
+      height: height+12,
       child: Row(
         children: [
+          /// BACK BUTTON
           Padding(
             padding: const EdgeInsets.only(bottom: 28.0),
             child: IconButton(
               icon: Image.asset("assets/images/round_back.png"),
               onPressed: () {
-
+                if (currentIndex > 0) {
+                  currentIndex--;
+                  scrollToIndex(currentIndex);
+                }
               },
             ),
           ),
+
+          /// HORIZONTAL LIST
           Expanded(
             child: ListView.separated(
+              controller: _controller,
               scrollDirection: Axis.horizontal,
-              separatorBuilder: (_, __) => const SizedBox(width: 12),
+              separatorBuilder: (_, __) => SizedBox(width: gap),
               itemCount: items.length,
               itemBuilder: (context, index) {
                 final item = items[index];
                 return Column(
                   children: [
-                    Image.asset(
-                      item['image']!,
-                      width: width,
-                      height: height>28?height-28:height,
-                      fit: BoxFit.cover,
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top:12.0),
+                          child: Image.asset(
+                            item['image']!,
+                            width: width,
+                            height: height > 28 ? height - 28 : height,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        if (index == 0 || index==4)
+                          Positioned(
+                            right: -8,
+                            top: 0,
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: const BoxDecoration(
+                                color: AppColors.green,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                '1',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                     SizedBox(
                       width: width,
-                      child: Flexible(
-                        child: Text(
-                          item['text']!,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                              color: AppColors.textBlack,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                            ),
+                      child: Text(
+                        item['text']!,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -339,12 +405,17 @@ class _s5State extends State<s5> {
               },
             ),
           ),
+
+          /// FORWARD BUTTON
           Padding(
             padding: const EdgeInsets.only(bottom: 28.0),
             child: IconButton(
               icon: Image.asset("assets/images/round_forward.png"),
               onPressed: () {
-
+                if (currentIndex < items.length - 1) {
+                  currentIndex++;
+                  scrollToIndex(currentIndex);
+                }
               },
             ),
           ),
@@ -352,4 +423,5 @@ class _s5State extends State<s5> {
       ),
     );
   }
+
 }
