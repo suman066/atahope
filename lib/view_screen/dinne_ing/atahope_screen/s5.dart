@@ -17,71 +17,84 @@ class _s5State extends State<s5> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        surfaceTintColor: Colors.transparent,
-        leading: InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0), // optional to give some spacing
-            child: Image.asset(
-              "assets/images/back.png",      // <-- your asset path
-              width: 22,
-              height: 22,
-            ),
-          ),
-        ),
-        centerTitle: true,
-        title: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Image (logo or icon)
-            const SizedBox(height: 2),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: const Text(
-                  "CAFÉ\nDE\nPARIS",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    height: 1.1,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          surfaceTintColor: Colors.transparent,
+
+          flexibleSpace: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Top row (back + switch)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () => Navigator.pop(context),
+                        child: Image.asset(
+                          "assets/images/back.png",
+                          width: 22,
+                          height: 22,
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          const SizedBox(height: 4),
+
+                          // Title block
+                          Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: const Text(
+                              "CAFÉ\nDE\nPARIS",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                height: 1.1,
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 4),
+
+                          Text(
+                            "Cafe de Paris",
+                            style: GoogleFonts.secularOne(
+                              textStyle: const TextStyle(
+                                color: AppColors.textBlack,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      CustomSwitch(
+                        value: false,
+                        onChanged: (val) {},
+                      ),
+                    ],
                   ),
-                ),
+
+
+                ],
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              "Cafe de Paris",
-              style: GoogleFonts.secularOne(
-                textStyle: const TextStyle(
-                  color: AppColors.textBlack,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: CustomSwitch(
-              value: false,
-              onChanged: (val) {
-                debugPrint('Dark mode: $val');
-              },
             ),
           ),
-        ],
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -327,9 +340,12 @@ class _s5State extends State<s5> {
         children: [
           /// BACK BUTTON
           Padding(
-            padding: const EdgeInsets.only(bottom: 28.0),
+            padding: const EdgeInsets.only(bottom: 25.0),
             child: IconButton(
-              icon: Image.asset("assets/images/round_back.png"),
+              icon: SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: Image.asset("assets/images/round_back.png")),
               onPressed: () {
                 if (currentIndex > 0) {
                   currentIndex--;
@@ -410,7 +426,10 @@ class _s5State extends State<s5> {
           Padding(
             padding: const EdgeInsets.only(bottom: 28.0),
             child: IconButton(
-              icon: Image.asset("assets/images/round_forward.png"),
+              icon: SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: Image.asset("assets/images/round_forward.png")),
               onPressed: () {
                 if (currentIndex < items.length - 1) {
                   currentIndex++;

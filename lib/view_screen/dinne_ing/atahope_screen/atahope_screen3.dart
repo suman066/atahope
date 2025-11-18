@@ -300,7 +300,10 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                 children: [
                   // BACK BUTTON
                   IconButton(
-                    icon: Image.asset("assets/images/round_back.png"),
+                    icon: SizedBox(
+                        height: 26,
+                        width: 26,
+                        child: Image.asset("assets/images/round_back.png")),
                     onPressed: () {
                       if (currentIndex > 0) {
                         currentIndex--;
@@ -328,7 +331,10 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
 
                   // FORWARD BUTTON
                   IconButton(
-                    icon: Image.asset("assets/images/round_forward.png"),
+                    icon: SizedBox(
+                      height: 26,
+                        width: 26,
+                        child: Image.asset("assets/images/round_forward.png")),
                     onPressed: () {
                       if (currentIndex < items.length - 1) {
                         currentIndex++;
@@ -374,45 +380,46 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                   Padding(
                     padding: const EdgeInsets.only(right:8.0),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         buildTabButton(
                             index: 0,
                             assetPath: "assets/images/globe1.png",
                             activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
+                            height: 15,
+                            width: 15
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 8),
                         buildTabButton(
                             index: 1,
                             assetPath: "assets/images/spoon.png",
                             activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
+                            height: 15,
+                            width: 15
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 8),
                         buildTabButton(
                             index: 2,
                             assetPath: "assets/images/direction.png",
                             activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
+                            height: 15,
+                            width: 15
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 8),
                         buildTabButton(
                             index: 3,
                             assetPath: "assets/images/c_tab.png",
                             activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
+                            height: 15,
+                            width: 15
                         ),
+                        const SizedBox(height: 8),
                         buildTabButton(
                             index: 4,
                             assetPath: "assets/images/upgrade_icon.png",
                             activeColor: AppColors.purple,
-                            height: 30,
-                            width: 30
+                            height: 15,
+                            width: 15
                         ),
 
                       ],
@@ -520,10 +527,16 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
               },
             ),
           ),
-          IconButton(
-            icon: Image.asset("assets/images/round_forward.png"),
-            onPressed: () {
-            },
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50.0),
+            child: IconButton(
+              icon: SizedBox(
+                height: 25,
+                  width: 25,
+                  child: Image.asset("assets/images/round_forward.png")),
+              onPressed: () {
+              },
+            ),
           ),
         ],
       ),
@@ -603,7 +616,10 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
             ),
 
             SizedBox(height: 10),
-            Image.asset(item["image"]),
+            SizedBox(
+              height: 125,
+                width: 125,
+                child: Image.asset(item["image"])),
 
             SizedBox(
               width: 125,
@@ -612,9 +628,12 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/images/wait.png"),
+                    SizedBox(
+                      height: 15,
+                        width: 15,
+                        child: Image.asset("assets/images/wait.png")),
                     SizedBox(width: 5),
-                    Image.asset("assets/images/f2.png"),
+                    SizedBox(child: Image.asset("assets/images/f2.png")),
                     SizedBox(width: 5),
                     Text(
                       item["time"],
@@ -641,7 +660,10 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
             children: [
               Row(
                 children: [
-                  Image.asset("assets/images/restaurant.png"),
+                  SizedBox(
+                    height:29,
+                      width: 29,
+                      child: Image.asset("assets/images/restaurant.png")),
                   SizedBox(width: 5),
                   Flexible(
                     child: Text(

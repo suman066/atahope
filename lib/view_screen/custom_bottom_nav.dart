@@ -50,8 +50,8 @@ class CustomBottomNav extends StatelessWidget {
       child: IconButton(
         onPressed: () => onTap(index),
         icon: SizedBox(
-          //width: width,
-          //height: height,
+          width: width,
+          height: height,
           child: Image.asset(
             assetPath,
             fit: BoxFit.contain,
@@ -62,35 +62,7 @@ class CustomBottomNav extends StatelessWidget {
       ),
     );
   }
-  Widget _buildNavItem1(
-      String assetPath,
-      int index, {
-        Color? activeColor,
-        double width = 45,
-        double height = 40,
-      }) {
-    final bool isSelected = currentIndex == index;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isSelected ? (activeColor ?? AppColors.purple) : Colors.transparent,
-        shape: BoxShape.circle,
-      ),
-      child: IconButton(
-        onPressed: () => onTap(index),
-        icon: SizedBox(
-          width: width,
-          height: height,
-          child: Image.asset(
-            assetPath,
-            fit: BoxFit.contain,
-            color: isSelected ? AppColors.white : null, // remove if no tint
-          ),
-        ),
-        splashRadius: width, // optional
-      ),
-    );
-  }
 
 
   /// Special design for the camera icon (with turquoise outline)

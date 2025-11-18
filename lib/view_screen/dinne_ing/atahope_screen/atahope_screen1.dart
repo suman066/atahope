@@ -411,12 +411,20 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         ),
                         child: Column(
                           children: [
-                            Image.asset(
-                              "assets/images/zoom_out_icon.png",
+                            SizedBox(
+                              height:24,
+                              width: 24,
+                              child: Image.asset(
+                                "assets/images/zoom_out_icon.png",
+                              ),
                             ),
                             SizedBox(height: 25,),
-                            Image.asset(
-                              "assets/images/zoom_in_icon.png",
+                            SizedBox(
+                              height:24,
+                              width: 24,
+                              child: Image.asset(
+                                "assets/images/zoom_in_icon.png",
+                              ),
                             ),
                           ],
                         ),
@@ -459,49 +467,53 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                   //const SizedBox(width: 20),
 
                   // Right: Fixed vertical tabs
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildTabButton(
-                        index: 0,
-                        assetPath: "assets/images/globe1.png",
-                        activeColor: AppColors.purple,
-                        height: 30,
-                        width: 30
-                      ),
-                      const SizedBox(height: 12),
-                      buildTabButton(
-                        index: 1,
-                        assetPath: "assets/images/spoon.png",
-                        activeColor: AppColors.purple,
-                        height: 30,
-                        width: 30
-                      ),
-                      const SizedBox(height: 12),
-                      buildTabButton(
-                        index: 2,
-                        assetPath: "assets/images/direction.png",
-                        activeColor: AppColors.purple,
-                        height: 30,
-                        width: 30
-                      ),
-                      const SizedBox(height: 12),
-                      buildTabButton(
-                          index: 2,
-                          assetPath: "assets/images/c_tab.png",
-                          activeColor: AppColors.purple,
-                          height: 30,
-                          width: 30
-                      ),
-                      const SizedBox(height: 12),
-                      buildTabButton(
-                          index: 2,
-                          assetPath: "assets/images/upgrade_icon.png",
-                          activeColor: AppColors.purple,
-                          height: 30,
-                          width: 30
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right:8.0,top:20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        buildTabButton(
+                            index: 0,
+                            assetPath: "assets/images/globe1.png",
+                            activeColor: AppColors.purple,
+                            height: 15,
+                            width: 15
+                        ),
+                        const SizedBox(height: 8),
+                        buildTabButton(
+                            index: 1,
+                            assetPath: "assets/images/spoon.png",
+                            activeColor: AppColors.purple,
+                            height: 15,
+                            width: 15
+                        ),
+                        const SizedBox(height: 8),
+                        buildTabButton(
+                            index: 2,
+                            assetPath: "assets/images/direction.png",
+                            activeColor: AppColors.purple,
+                            height: 15,
+                            width: 15
+                        ),
+                        const SizedBox(height: 8),
+                        buildTabButton(
+                            index: 3,
+                            assetPath: "assets/images/c_tab.png",
+                            activeColor: AppColors.purple,
+                            height: 15,
+                            width: 15
+                        ),
+                        const SizedBox(height: 8),
+                        buildTabButton(
+                            index: 4,
+                            assetPath: "assets/images/upgrade_icon.png",
+                            activeColor: AppColors.purple,
+                            height: 15,
+                            width: 15
+                        ),
+
+                      ],
+                    ),
                   ),
                 ],
               ),

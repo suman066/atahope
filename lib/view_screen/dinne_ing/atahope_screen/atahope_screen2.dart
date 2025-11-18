@@ -316,7 +316,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: 490,
+                height: 390,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -341,7 +341,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  width: MediaQuery.sizeOf(context).width-65,
+                                  width: MediaQuery.sizeOf(context).width-50,
                                   child: AnimatedSwitcher(
                                       duration: const Duration(milliseconds: 500),
                                       transitionBuilder: (child, anim) => FadeTransition(
@@ -352,47 +352,48 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(right:8.0),
+                                  padding: const EdgeInsets.only(right:8.0,top:20),
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       buildTabButton(
                                           index: 0,
                                           assetPath: "assets/images/globe1.png",
                                           activeColor: AppColors.purple,
-                                          height: 30,
-                                          width: 30
+                                          height: 15,
+                                          width: 15
                                       ),
-                                      const SizedBox(height: 12),
+                                      const SizedBox(height: 8),
                                       buildTabButton(
                                           index: 1,
                                           assetPath: "assets/images/spoon.png",
                                           activeColor: AppColors.purple,
-                                          height: 30,
-                                          width: 30
+                                          height: 15,
+                                          width: 15
                                       ),
-                                      const SizedBox(height: 12),
+                                      const SizedBox(height: 8),
                                       buildTabButton(
                                           index: 2,
                                           assetPath: "assets/images/direction.png",
                                           activeColor: AppColors.purple,
-                                          height: 30,
-                                          width: 30
+                                          height: 15,
+                                          width: 15
                                       ),
-                                      const SizedBox(height: 12),
+                                      const SizedBox(height: 8),
                                       buildTabButton(
                                           index: 3,
                                           assetPath: "assets/images/c_tab.png",
                                           activeColor: AppColors.purple,
-                                          height: 30,
-                                          width: 30
+                                          height: 15,
+                                          width: 15
                                       ),
+                                      const SizedBox(height: 8),
                                       buildTabButton(
                                           index: 4,
                                           assetPath: "assets/images/upgrade_icon.png",
                                           activeColor: AppColors.purple,
-                                          height: 30,
-                                          width: 30
+                                          height: 15,
+                                          width: 15
                                       ),
 
                                     ],
@@ -407,7 +408,10 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                     ),
                     Align(
                       alignment: Alignment.center,
-                        child: Image.asset("assets/images/c3.png")),
+                        child: SizedBox(
+                          height: 115,
+                            width: 115,
+                            child: Image.asset("assets/images/c3.png"))),
                   ],
                 ),
               ),
@@ -476,8 +480,12 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
             mainAxisSize: MainAxisSize.min,
             children: [
               // LEFT ICON
-              Image.asset(
-                assetPath,
+              SizedBox(
+                height: 45,
+                width: 45,
+                child: Image.asset(
+                  assetPath,
+                ),
               ),
 
               const SizedBox(width: 8),
@@ -565,7 +573,10 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
             children: [
               /// LEFT ARROW
               IconButton(
-                icon: Image.asset("assets/images/round_back.png"),
+                icon: SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: Image.asset("assets/images/round_back.png")),
                 onPressed: () {
                   currentIndex.value--;
                   controller.animateToPage(
@@ -628,7 +639,11 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
                           /// IMAGE
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(r.image1, fit: BoxFit.cover),
+                            child: SizedBox(
+                              height: 115,
+                                width: 115,
+                                child: Image.asset(r.image1, fit: BoxFit.cover)
+                            ),
                           ),
 
                           /// bottom arrows + distance
@@ -658,7 +673,10 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
 
               /// RIGHT ARROW
               IconButton(
-                icon: Image.asset("assets/images/round_forward.png"),
+                icon: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: Image.asset("assets/images/round_forward.png")),
                 onPressed: () {
                   currentIndex.value++;
                   controller.animateToPage(
@@ -707,6 +725,7 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
   late PageController controller;
   ValueNotifier<int> currentIndex = ValueNotifier(0);
 
+
   @override
   void initState() {
     super.initState();
@@ -721,121 +740,122 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
 
   @override
   Widget build(BuildContext context) {
+    return horizontalList();
+
+  }
+
+  Widget horizontalList() {
+    final ScrollController _controller = ScrollController();
+    double itemExtent = 120 + 12; // item width + spacing
+    int currentIndex = 0;
+
+    // Scroll to a specific index
+    void scrollToIndex(int index) {
+      _controller.animateTo(
+        index * itemExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+
+    // Listen to manual scroll to update index
+    _controller.addListener(() {
+      currentIndex = (_controller.offset / itemExtent).round();
+    });
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
-      child: ValueListenableBuilder<int>(
-        valueListenable: currentIndex,
-        builder: (context, value, _) {
-          return Row(
-            children: [
-              /// LEFT ARROW
-              IconButton(
-                icon: Image.asset("assets/images/r_back.png"),
-                onPressed: () {
-                  currentIndex.value--;
-                  controller.animateToPage(
-                    currentIndex.value + 1,
-                    duration: const Duration(milliseconds: 350),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-
-              /// PAGE VIEW
-              Expanded(
-                child: PageView.builder(
-                  controller: controller,
-                  itemCount: cafetaria.length + 2,
-                  onPageChanged: (page) {
-                    if (page == 0) {
-                      Future.microtask(() => controller.jumpToPage(cafetaria.length));
-                      currentIndex.value = cafetaria.length - 1;
-                    } else if (page == cafetaria.length + 1) {
-                      Future.microtask(() => controller.jumpToPage(1));
-                      currentIndex.value = 0;
-                    } else {
-                      currentIndex.value = page - 1;
-                    }
-                  },
-                  itemBuilder: (context, i) {
-                    final r = cafetaria[mappedIndex(i)];
-                    final double pad = (mappedIndex(i) == currentIndex.value) ? 20 : 0;
-
-                    return Padding(
-                      padding: EdgeInsets.only(top: pad),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          /// TITLE
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(r.image),
-                              const SizedBox(width: 4),
-                              Flexible(
-                                child: Text(
-                                  r.title,
-                                  style: GoogleFonts.secularOne(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
+      child: Row(
+        children: [
+          IconButton(
+            icon: SizedBox(
+                height: 25,
+                width: 25,
+                child: Image.asset("assets/images/round_back.png")),
+            onPressed: () {
+              if (currentIndex > 0) {
+                currentIndex--;
+                scrollToIndex(currentIndex);
+              }
+            },
+          ),
+          Expanded(
+            child: ListView.separated(
+              controller: _controller,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (_, __) => SizedBox(width: 12),
+              itemCount: cafetaria.length,
+              itemBuilder: (context, index) {
+                final r = cafetaria[mappedIndex(index)];
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    /// TITLE
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(r.image),
+                        const SizedBox(width: 4),
+                        Text(
+                          r.title,
+                          style: GoogleFonts.secularOne(
+                            textStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                          const SizedBox(height: 10),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
 
-                          /// IMAGE
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(r.image1, fit: BoxFit.cover),
+                    /// IMAGE
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: SizedBox(
+                        height:115,
+                          width:115,
+                          child: Image.asset(r.image1, fit: BoxFit.cover)),
+                    ),
+
+                    /// bottom arrows + distance
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/f1.png"),
+                        Image.asset("assets/images/f2.png"),
+                        Text(
+                          "${r.distance}m",
+                          style: GoogleFonts.secularOne(
+                            textStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-
-                          /// bottom arrows + distance
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/images/f1.png"),
-                              Image.asset("assets/images/f2.png"),
-                              Text(
-                                "${r.distance}m",
-                                style: GoogleFonts.secularOne(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-              /// RIGHT ARROW
-              IconButton(
-                icon: Image.asset("assets/images/r_forward.png"),
-                onPressed: () {
-                  currentIndex.value++;
-                  controller.animateToPage(
-                    currentIndex.value + 1,
-                    duration: const Duration(milliseconds: 350),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-            ],
-          );
-        },
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              },
+            ),
+          ),
+          IconButton(
+            icon: SizedBox(
+                height: 25,
+                width: 25,
+                child: Image.asset("assets/images/round_forward.png")),
+            onPressed: () {
+              if (currentIndex < cafetaria.length - 1) {
+                currentIndex++;
+                scrollToIndex(currentIndex);
+              }
+            },
+          ),
+        ],
       ),
     );
   }
