@@ -19,109 +19,102 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    WebBackHelper().disableBackButton();
+    //WebBackHelper().disableBackButton();
   }
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        if (didPop) return;
-        debugPrint("Back button disabled");
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Center(
-              child: Padding(
-                padding:
-                const EdgeInsets.symmetric(vertical: 60.0, horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                     Text(
-                      "Welcome to Atahope",
-                      style: GoogleFonts.libreFranklin(
-                        textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
-                          fontWeight: FontWeight.w400,),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Center(
+            child: Padding(
+              padding:
+              const EdgeInsets.symmetric(vertical: 60.0, horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   Text(
+                    "Welcome to Atahope",
+                    style: GoogleFonts.libreFranklin(
+                      textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                        fontWeight: FontWeight.w400,),
+                    ),
+                  ),
+                  const SizedBox(height: 120),
+
+                  // Dine-in option
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/dinne-ing.png',
+                        height: 100,
+                        width: 100,
                       ),
-                    ),
-                    const SizedBox(height: 120),
+                      const SizedBox(height: 25),
+                      ElevatedButton(
+                        onPressed: () {
+                          //NavigationHelper.push(AppRoutes.dineIn);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.gray,
+                          foregroundColor: AppColors.textBlack,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 4),
+                        ),
+                        child: Text(
+                          "Dinne-ing",
+                          style: GoogleFonts.libreFranklin(
+                            textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                              fontWeight: FontWeight.w400,),
+                          )
+                        ),
+                      ),
+                    ],
+                  ),
 
-                    // Dine-in option
-                    Column(
-                      children: [
-                        Image.asset(
-                          'assets/images/dinne-ing.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        const SizedBox(height: 25),
-                        ElevatedButton(
-                          onPressed: () {
-                            //NavigationHelper.push(AppRoutes.dineIn);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.gray,
-                            foregroundColor: AppColors.textBlack,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 4),
-                          ),
-                          child: Text(
-                            "Dinne-ing",
-                            style: GoogleFonts.libreFranklin(
-                              textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
-                                fontWeight: FontWeight.w400,),
-                            )
-                          ),
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 70),
 
-                    const SizedBox(height: 70),
-
-                    // Delivery option
-                    Column(
-                      children: [
-                        Image.asset(
-                          'assets/images/delivery.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        const SizedBox(height: 15),
-                        ElevatedButton(
-                          onPressed: () {
-                            NavigationHelper.push(AppRoutes.dineIn);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.gray,
-                            foregroundColor: AppColors.textBlack,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 50, vertical: 4),
+                  // Delivery option
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/delivery.png',
+                        height: 100,
+                        width: 100,
+                      ),
+                      const SizedBox(height: 15),
+                      ElevatedButton(
+                        onPressed: () {
+                          NavigationHelper.push(AppRoutes.dineIn);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.gray,
+                          foregroundColor: AppColors.textBlack,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
                           ),
-                          child: Text(
-                            "Delivery",
-                            style: GoogleFonts.libreFranklin(
-                              textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
-                                fontWeight: FontWeight.w400,),
-                            )
-                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 4),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                        child: Text(
+                          "Delivery",
+                          style: GoogleFonts.libreFranklin(
+                            textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 35,
+                              fontWeight: FontWeight.w400,),
+                          )
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

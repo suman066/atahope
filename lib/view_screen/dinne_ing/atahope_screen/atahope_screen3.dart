@@ -54,12 +54,19 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
       {"title": "Sushi Bronze", "image": "assets/images/dc2.png", "st1": "Soy sauce: 60%","st2":"GINGER: 25%"},
       {"title": "Sushi Royal", "image": "assets/images/dc3.png", "st1": "Wasabi: 60%", "st2":"Salads: 25%"},
       {"title": "Sushi Silver", "image": "assets/images/dc4.png", "st1": "Sea Food: 60%", "st2":"FISH: 25%"},
+      {"title": "Double Chicken", "image": "assets/images/dc1.png", "st1": "RICE: 60%","st2":"FISH: 25%"},
+      {"title": "Sushi Bronze", "image": "assets/images/dc2.png", "st1": "Soy sauce: 60%","st2":"GINGER: 25%"},
+      {"title": "Sushi Royal", "image": "assets/images/dc3.png", "st1": "Wasabi: 60%", "st2":"Salads: 25%"},
+      {"title": "Sushi Silver", "image": "assets/images/dc4.png", "st1": "Sea Food: 60%", "st2":"FISH: 25%"},
     ];
 
     final List<Map<String, String>> bestSellers = [
       {"title": "Gastroenvy Gold", "image": "assets/images/bs1.png", "st1": "Vegetables: 30%","st2":"Proteins: 15%"},
       {"title": "Gastroenvy Silver", "image": "assets/images/bs2.png", "st1": "Carbohydrates: 45%","st2":"Fruits: 5-10 %"},
       {"title": "Gastroenvy Royal", "image": "assets/images/bs3.png", "st1": "Herbs: 15%","st2":"Spices:: 25-30 %"},
+      {"title": "Gastroenvy Gold", "image": "assets/images/bs1.png", "st1": "Vegetables: 30%","st2":"Proteins: 15%"},
+      {"title": "Gastroenvy Silver", "image": "assets/images/bs2.png", "st1": "Carbohydrates: 45%","st2":"Fruits: 5-10 %"},
+      {"title": "Gastroenvy Royal", "image": "assets/images/bs3.png", "st1": "Herbs: 15%","st2":"Spices:: 25-30 %"}
     ];
 
     return Scaffold(
@@ -363,7 +370,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                         const SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.only(left:16.0,),
-                          child: _buildHorizontalList(doubleChicken,imageWidth: 80),
+                          child: HorizontalListWidget(items:doubleChicken,imageWidth: 80),
                         ),
                         const SizedBox(height: 10),
 
@@ -372,7 +379,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                         const SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.only(left:16.0,),
-                          child: _buildHorizontalList(bestSellers, imageWidth: 110),
+                          child: HorizontalListWidget(items: bestSellers, imageWidth: 110),
                         ),
                       ],
                     ),
@@ -457,92 +464,6 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
       ),
     );
   }
-
-  Widget _buildHorizontalList(List<Map<String, String>> items, {double imageWidth=80}) {
-    return SizedBox(
-      height: 170,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final item = items[index];
-                return Container(
-                  width: imageWidth,
-                  margin: const EdgeInsets.only(right: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.asset(item["image"]!),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              item["title"]!,
-                              style: GoogleFonts.secularOne(
-                                textStyle: const TextStyle(
-                                  color: AppColors.textBlack,
-                                  fontSize:10,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 1),
-                            Text(
-                              item["st1"]!,
-                              style: GoogleFonts.sedanSc(
-                                textStyle: const TextStyle(
-                                  color: AppColors.textBlack,
-                                  fontSize:9,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 1,),
-                            Text(
-                              item["st2"]!,
-                              style: GoogleFonts.sedanSc(
-                                textStyle: const TextStyle(
-                                  color: AppColors.textBlack,
-                                  fontSize:9,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50.0),
-            child: IconButton(
-              icon: SizedBox(
-                height: 25,
-                  width: 25,
-                  child: Image.asset("assets/images/round_forward.png")),
-              onPressed: () {
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget buildTabButton({
     required int index,
     required String assetPath,   // <-- changed
@@ -700,3 +621,103 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
   }
 
 }
+
+class HorizontalListWidget extends StatefulWidget {
+  final List<Map<String, String>> items;
+  final double imageWidth;
+
+  const HorizontalListWidget({
+    super.key,
+    required this.items,
+    this.imageWidth = 80,
+  });
+
+  @override
+  State<HorizontalListWidget> createState() => _HorizontalListWidgetState();
+}
+
+class _HorizontalListWidgetState extends State<HorizontalListWidget> {
+  final ScrollController _controller = ScrollController();
+  int currentIndex = 0;
+
+  double itemExtent = 132; // 120 + 12
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        currentIndex = (_controller.offset / itemExtent).round();
+      });
+    });
+  }
+
+  void scrollToIndex(int index) {
+    _controller.animateTo(
+      index * itemExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final items = widget.items;
+
+    return SizedBox(
+      height: 170,
+      child: Row(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              controller: _controller,
+              scrollDirection: Axis.horizontal,
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return Container(
+                  width: widget.imageWidth,
+                  margin: const EdgeInsets.only(right: 12),
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(16)),
+                        child: Image.asset(item["image"]!),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(item["title"]!, style: TextStyle(fontSize: 10)),
+                            Text(item["st1"]!, style: TextStyle(fontSize: 9)),
+                            Text(item["st2"]!, style: TextStyle(fontSize: 9)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+
+          /// Forward Button
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50.0),
+            child: IconButton(
+              icon: Image.asset("assets/images/round_forward.png", height: 25),
+              onPressed: () {
+                if (currentIndex < items.length - 1) {
+                  scrollToIndex(currentIndex + 1);
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

@@ -14,13 +14,21 @@ class s4 extends StatefulWidget {
 
 class _s4State extends State<s4> {
   int selectedCategory = 0;
-  final List<String> categories = [
+  /*final List<String> categories = [
     'Appetizers',
     'Beverages',
     'Desserts',
     'Main course',
     'Side',
     'Special',
+  ];*/
+  final List<Map<String, dynamic>> categories = [
+    {'name': 'Appetizers','image': 'assets/images/a1.png'},
+    {'name': 'Beverages','image': 'assets/images/a2.png'},
+    {'name': 'Desserts','image': 'assets/images/a7.png'},
+    {'name': 'Main course','image': 'assets/images/a8.png'},
+    {'name': 'Side','image': 'assets/images/a4.png'},
+    {'name': 'Special','image': 'assets/images/a3.png'},
   ];
 
   final List<Map<String, dynamic>> meatItems = [
@@ -28,8 +36,16 @@ class _s4State extends State<s4> {
     {'name': 'Roma', 'price': '5 AED', 'time': '10m', 'image': 'assets/images/m2.png'},
     {'name': 'Silmont', 'price': '2.5 AED', 'time': '12m', 'image': 'assets/images/m3.png'},
     {'name': 'Buda', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m4.png'},
+    {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m1.png'},
+    {'name': 'Roma', 'price': '5 AED', 'time': '10m', 'image': 'assets/images/m2.png'},
+    {'name': 'Silmont', 'price': '2.5 AED', 'time': '12m', 'image': 'assets/images/m3.png'},
+    {'name': 'Buda', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m4.png'},
   ];
   final List<Map<String, dynamic>> meatlessItems = [
+    {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m5.png'},
+    {'name': 'Rabat', 'price': '10 AED', 'time': '6m', 'image': 'assets/images/m6.png'},
+    {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m5.png'},
+    {'name': 'Rabat', 'price': '10 AED', 'time': '6m', 'image': 'assets/images/m6.png'},
     {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m5.png'},
     {'name': 'Rabat', 'price': '10 AED', 'time': '6m', 'image': 'assets/images/m6.png'},
     {'name': 'Everest', 'price': '5 AED', 'time': '6m', 'image': 'assets/images/m5.png'},
@@ -126,28 +142,28 @@ class _s4State extends State<s4> {
             children: [
               const SizedBox(height: 40),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
                 child: _buildCategoryTabs(),
               ),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: _buildSectionTitle('Meatness'),
+                child: _buildSectionTitle('Meatness',"assets/images/a9.png"),
               ),
               const SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: _buildFoodList(meatItems),
+                padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
+                child: FoodListWidget(items: meatItems),
               ),
-              const SizedBox(height: 35),
+              const SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: _buildSectionTitle('Meatless'),
+                child: _buildSectionTitle('Meatless',"assets/images/a5.png"),
               ),
               const SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: _buildFoodList(meatlessItems),
+                padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
+                child: FoodListWidget(items: meatlessItems),
               ),
               const SizedBox(height: 30),
             ],
@@ -164,6 +180,7 @@ class _s4State extends State<s4> {
         runSpacing: 10, // space between lines
         alignment: WrapAlignment.center, // center all buttons
         children: List.generate(categories.length, (index) {
+          final item = categories[index];
           final isSelected = selectedCategory == index;
           return GestureDetector(
             onTap: () => setState(() => selectedCategory = index),
@@ -175,13 +192,22 @@ class _s4State extends State<s4> {
                 borderRadius: BorderRadius.circular(35),
                 //border: Border.all(color: Colors.purple, width: 1),
               ),
-              child: Text(
-                categories[index],
-                style:GoogleFonts.montserrat(
-                  textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
-                    fontWeight: FontWeight.w400,),
-                )
-
+              child: Column(
+                children: [
+                  Text(
+                      item["name"],
+                    style:GoogleFonts.montserrat(
+                      textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
+                        fontWeight: FontWeight.w400,),
+                    )
+                  ),
+                  SizedBox(height: 2.0,),
+                  SizedBox(
+                      height: 25,
+                      width: 35,
+                      child: Image.asset(item["image"])
+                  )
+                ],
               ),
             ),
           );
@@ -191,7 +217,7 @@ class _s4State extends State<s4> {
   }
 
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(String title, String image) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Stack(
@@ -204,13 +230,24 @@ class _s4State extends State<s4> {
                 color: AppColors.gray,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                  style:GoogleFonts.montserrat(
-                    textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
-                      fontWeight: FontWeight.w400,),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                      style:GoogleFonts.montserrat(
+                        textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
+                          fontWeight: FontWeight.w400,),
+                      )
+                  ),
+                  SizedBox(width: 4.0,),
+                  SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: Image.asset(image)
                   )
+                ],
               ),
             ),
           ),
@@ -247,37 +284,56 @@ class _s4State extends State<s4> {
     return Row(
       children: [
         Expanded(
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(), // let main scroll handle
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Two cards per row
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              childAspectRatio: 2.3, // wider look (since image is at left)
+          child: SizedBox(
+            height: 170, // height for 2 cards
+            width: MediaQuery.sizeOf(context).width-60,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: (items.length / 2).ceil(), // number of columns
+              itemBuilder: (context, index) {
+                int first = index * 2;
+                int second = first + 1;
+
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: Column(
+                    children: [
+                      // First item
+                      SizedBox(
+                        width: 160,
+                        child: _buildFoodCard(items[first]),
+                      ),
+                      const SizedBox(height: 12),
+
+                      // Second item (if available)
+                      if (second < items.length)
+                        SizedBox(
+                          width: 160,
+                          child: _buildFoodCard(items[second]),
+                        ),
+                    ],
+                  ),
+                );
+              },
             ),
-            itemCount: items.length,
-            itemBuilder: (context, index) {
-              final item = items[index];
-              return _buildFoodCard(item);
-            },
           ),
         ),
         IconButton(
-          icon: SizedBox(
-              height: 25,
-              width: 25,
-              child: Image.asset("assets/images/round_forward.png")),
+          icon: Image.asset("assets/images/round_forward.png", height: 25),
           onPressed: () {
+           /* if (currentIndex < items.length - 1) {
+              scrollToIndex(currentIndex + 1);
+            }*/
           },
         ),
       ],
     );
   }
 
+
   Widget _buildFoodCard(Map<String, dynamic> item) {
     return Container(
-      height: 70,
+      height: 75,
       decoration: BoxDecoration(
         color: AppColors.gray,
         borderRadius: BorderRadius.circular(16),
@@ -289,7 +345,7 @@ class _s4State extends State<s4> {
             borderRadius: BorderRadius.circular(16),
             child:
             Image.asset(item['image'],
-              height: 70,
+              height: 75,
               width: 70,
               fit: BoxFit.cover,),
           ),
@@ -330,7 +386,11 @@ class _s4State extends State<s4> {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    const SizedBox(width: 25),
+                    SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: Image.asset("assets/images/a6.png", fit: BoxFit.cover,)),
+                    const SizedBox(width: 4),
                     Text(
                       item['time'],
                       style: GoogleFonts.montserrat(
@@ -351,3 +411,174 @@ class _s4State extends State<s4> {
 
 
 }
+
+class FoodListWidget extends StatefulWidget {
+  final List<Map<String, dynamic>> items;
+
+  const FoodListWidget({super.key, required this.items});
+
+  @override
+  State<FoodListWidget> createState() => _FoodListWidgetState();
+}
+
+class _FoodListWidgetState extends State<FoodListWidget> {
+  final ScrollController _controller = ScrollController();
+  int currentIndex = 0;
+
+  // width of each column (must match your SizedBox width)
+  final double columnWidth = 160 + 12; // 160 width + 12 padding
+
+  void scrollToIndex(int index) {
+    _controller.animateTo(
+      index * columnWidth,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Update currentIndex on manual scroll
+    _controller.addListener(() {
+      setState(() {
+        currentIndex = (_controller.offset / columnWidth).round();
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final items = widget.items;
+    int columnCount = (items.length / 2).ceil();
+
+    return Row(
+      children: [
+        Expanded(
+          child: SizedBox(
+            height: 170,
+            child: ListView.builder(
+              controller: _controller,
+              scrollDirection: Axis.horizontal,
+              itemCount: columnCount,
+              itemBuilder: (context, index) {
+                int first = index * 2;
+                int second = first + 1;
+
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 160,
+                        child: _buildFoodCard(items[first]),
+                      ),
+                      const SizedBox(height: 12),
+
+                      if (second < items.length)
+                        SizedBox(
+                          width: 160,
+                          child: _buildFoodCard(items[second]),
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+
+        // Forward Button
+        IconButton(
+          icon: Image.asset("assets/images/round_forward.png", height: 25),
+          onPressed: () {
+            if (currentIndex < columnCount - 1) {
+              scrollToIndex(currentIndex + 1);
+            }
+          },
+        ),
+      ],
+    );
+  }
+
+  // ------------------------------- CARD UI -------------------------------
+  Widget _buildFoodCard(Map<String, dynamic> item) {
+    return Container(
+      height: 75,
+      decoration: BoxDecoration(
+        color: AppColors.gray,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Image.asset(
+              item['image'],
+              height: 75,
+              width: 70,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(width: 10),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  item['name'],
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textBlack,
+                  ),
+                ),
+                const SizedBox(height: 6),
+
+                Row(
+                  children: [
+                    Image.asset("assets/images/money.png",
+                        height: 20, width: 20),
+                    const SizedBox(width: 4),
+                    Text(
+                      item['price'],
+                      style: GoogleFonts.montserrat(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textBlack,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 4),
+
+                Row(
+                  children: [
+                    Image.asset("assets/images/a6.png",
+                        height: 20, width: 20),
+                    const SizedBox(width: 4),
+                    Text(
+                      item['time'],
+                      style: GoogleFonts.montserrat(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textBlack,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
