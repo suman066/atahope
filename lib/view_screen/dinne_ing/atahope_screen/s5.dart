@@ -18,7 +18,7 @@ class _s5State extends State<s5> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(95),
         child: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
@@ -101,7 +101,7 @@ class _s5State extends State<s5> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(height: 5),
               // Title
               Text(
                 "Burger Bites",
@@ -113,79 +113,194 @@ class _s5State extends State<s5> {
                   ),
                 ),
               ),
-              // Burger with tags around it
               Center(
-                child: SizedBox(
-                  width: 330,
-                  height: 290,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Center Burger Image
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            image: AssetImage('assets/images/burger.png'), // your image path
-                            fit: BoxFit.cover,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SizedBox(
+                    width: 380, // total width of your design
+                    height: 200,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Center Burger Image
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/burger.png'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
 
-                      // Bun - Top
-                      Positioned(
-                        top: 50,
-                        left: 20,
-                        child: _buildLabel('Bun'),
-                      ),
-
-                      // Tomatoes - Top Right
-                      Positioned(
-                        top: 50,
-                        right: 0,
-                        child: _buildLabel('Tomatoes'),
-                      ),
-
-                      // Sauce - Right Center
-                      Positioned(
-                        right: 0,
-                        bottom: 120,
-                        child: _buildLabel('Sauce'),
-                      ),
-
-                      // Salad - Bottom Right
-                      Positioned(
-                        bottom:30,
-                        right: 30,
-                        child: _buildLabel('Salad'),
-                      ),
-
-                      // Steak - Bottom Left (angled)
-                      /*Positioned(
-                        bottom: 10,
-                        left: 40,
-                        child: Transform.rotate(
-                          angle: -0.3,
-                          child: _buildLabel('Steak'),
+                        // Bun - Top
+                        Positioned(
+                          top: 10,
+                          left: 35,
+                          child: Row(
+                            children: [
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:5.0,right: 5.0),
+                                    child: _buildLabel('Bun'),
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: Image.asset('assets/images/plus.png', height: 15,width: 15,))
+                                ],
+                              ),
+                              const SizedBox(width: 2),
+                              Padding(
+                                padding: const EdgeInsets.only(top:25.0),
+                                child: _buildArrow(direction: AxisDirection.right,  image:"assets/images/arrow_01.png"),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),*/
-                      Positioned(
-                        bottom: 30,
-                        left: 30,
-                        child: _buildLabel('Steak'),
-                      ),
 
-                      // Cheese - Left Center
-                      Positioned(
-                        left: 0,
-                        bottom: 120,
-                        child: _buildLabel('Cheese'),
-                      ),
-                    ],
+                        // Tomatoes - Top Right
+                        Positioned(
+                          top: 10,
+                          right: 0,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top:35.0),
+                                child: _buildArrow(direction: AxisDirection.left, image:"assets/images/arrow_06.png"),
+                              ),
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom:15.0, top: 7.0),
+                                    child: _buildLabel('Tomatoes'),
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      left: 0,
+                                      child: Image.asset('assets/images/plus.png', height: 15,width: 15,))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Sauce - Right Center
+                        Positioned(
+                          right: 20,
+                          top: 90,
+                          child: Row(
+                            children: [
+                              _buildArrow(direction: AxisDirection.left, image:"assets/images/arrow_05.png"),
+                              const SizedBox(width: 2),
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:5.0,right: 5.0),
+                                    child: _buildLabel('Sauce'),
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: Image.asset('assets/images/plus.png', height: 15,width: 15,))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Salad - Bottom Right
+                        Positioned(
+                          bottom: 10,
+                          right: 30,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom:30.0),
+                                child: _buildArrow(direction: AxisDirection.left, image:"assets/images/arrow_04.png"),
+                              ),
+                              const SizedBox(width: 2),
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:5.0,right: 5.0),
+                                    child: _buildLabel('Salad'),
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: Image.asset('assets/images/plus.png', height: 15,width: 15,))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Steak - Bottom Left
+                        Positioned(
+                          bottom: 10,
+                          left: 30,
+                          child: Transform.rotate(
+                            angle: -0.2,
+                            child: Row(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top:10.0,right: 5.0),
+                                      child: _buildLabel('Steak'),
+                                    ),
+                                    Positioned(
+                                        top: 0,
+                                        right: 0,
+                                        child: Image.asset('assets/images/plus.png', height: 15,width: 15,))
+                                  ],
+                                ),
+                                const SizedBox(width: 2),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom:10.0),
+                                  child: _buildArrow(direction: AxisDirection.right, image:"assets/images/arrow_03.png"),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        // Cheese - Left Center
+                        Positioned(
+                          left: 0,
+                          top: 90,
+                          child: Row(
+                            children: [
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:5.0,right: 5.0),
+                                    child: _buildLabel('Cheese'),
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: Image.asset('assets/images/plus.png', height: 15,width: 15,))
+                                ],
+                              ),
+                              const SizedBox(width: 5),
+                              Transform.rotate(
+                                  angle: -0.3,
+                                  child: _buildArrow(direction: AxisDirection.right, image:"assets/images/arrow_02.png")),
+
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
+
 
               const SizedBox(height: 30),
 
@@ -247,7 +362,7 @@ class _s5State extends State<s5> {
   // Tag widget
   Widget _buildLabel(String text) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
       decoration: BoxDecoration(
         color: Colors.grey.shade300,
         borderRadius: BorderRadius.circular(20),
@@ -257,7 +372,7 @@ class _s5State extends State<s5> {
         style: GoogleFonts.montserrat(
           textStyle: TextStyle(
             color: AppColors.textBlack,
-            fontSize: 20,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -442,5 +557,169 @@ class _s5State extends State<s5> {
       ),
     );
   }
+
+  Widget buildBurgerIngredients() {
+    return Center(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: SizedBox(
+          width: 400,
+          height: 350,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // BURGER IMAGE
+              Container(
+                width: 160,
+                height: 160,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/burger.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              // BUN (Top Left)
+              Positioned(
+                top: 40,
+                left: 40,
+                child: Row(
+                  children: [
+                    _buildIngredient("Bun"),
+                    const SizedBox(width: 5),
+                    _buildArrow(direction: AxisDirection.down, image:"assets/images/arrow_01.png"),
+                  ],
+                ),
+              ),
+
+              // SAUCE (Right)
+              Positioned(
+                right: 20,
+                top: 120,
+                child: Row(
+                  children: [
+                    _buildArrow(direction: AxisDirection.left, image:"assets/images/arrow_01.png"),
+                    const SizedBox(width: 5),
+                    _buildIngredient("Sauce"),
+                  ],
+                ),
+              ),
+
+              // TOMATOES (Top Right)
+              Positioned(
+                top: 40,
+                right: 40,
+                child: Row(
+                  children: [
+                    _buildArrow(direction: AxisDirection.down, image:"assets/images/arrow_01.png"),
+                    const SizedBox(width: 5),
+                    _buildIngredient("Tomatoes"),
+                  ],
+                ),
+              ),
+
+              // CHEESE (Left)
+              Positioned(
+                left: 20,
+                top: 120,
+                child: Row(
+                  children: [
+                    _buildIngredient("Cheese"),
+                    const SizedBox(width: 5),
+                    _buildArrow(direction: AxisDirection.right, image:"assets/images/arrow_01.png"),
+                  ],
+                ),
+              ),
+
+              // SALAD (Bottom Right)
+              Positioned(
+                bottom: 40,
+                right: 40,
+                child: Row(
+                  children: [
+                    _buildArrow(direction: AxisDirection.up, image:"assets/images/arrow_01.png"),
+                    const SizedBox(width: 5),
+                    _buildIngredient("Salad"),
+                  ],
+                ),
+              ),
+
+              // STEAK (Bottom Left)
+              Positioned(
+                bottom: 40,
+                left: 40,
+                child: Row(
+                  children: [
+                    _buildIngredient("Steak"),
+                    const SizedBox(width: 5),
+                    _buildArrow(direction: AxisDirection.up, image:"assets/images/arrow_01.png"),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _buildIngredient(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 6,
+            offset: Offset(0, 3),
+          )
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 22,
+            height: 22,
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.check, size: 14, color: Colors.white),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildArrow({required AxisDirection direction, required String image}) {
+    double angle = 0;
+
+    switch (direction) {
+      case AxisDirection.up:
+        angle = -3.14 / 2;
+        break;
+      case AxisDirection.down:
+        angle = 3.14 / 2;
+        break;
+      case AxisDirection.left:
+        angle = 3.14;
+        break;
+      case AxisDirection.right:
+        angle = 0;
+        break;
+    }
+
+    return Image.asset(image);
+  }
+
 
 }

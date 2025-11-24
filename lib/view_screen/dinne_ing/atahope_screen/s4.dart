@@ -56,7 +56,7 @@ class _s4State extends State<s4> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(95),
         child: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
@@ -140,27 +140,24 @@ class _s4State extends State<s4> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 5),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
                 child: _buildCategoryTabs(),
               ),
-              const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: _buildSectionTitle('Meatness',"assets/images/a9.png"),
               ),
-              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
                 child: FoodListWidget(items: meatItems),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 5),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: _buildSectionTitle('Meatless',"assets/images/a5.png"),
               ),
-              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
                 child: FoodListWidget(items: meatlessItems),
@@ -203,7 +200,7 @@ class _s4State extends State<s4> {
                   ),
                   SizedBox(height: 2.0,),
                   SizedBox(
-                      height: 25,
+                      height: 35,
                       width: 35,
                       child: Image.asset(item["image"])
                   )

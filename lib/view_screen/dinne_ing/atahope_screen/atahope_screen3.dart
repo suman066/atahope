@@ -300,7 +300,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                 ),
               ),
 
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
             SizedBox(
               height: 250,
               child: Row(
@@ -369,8 +369,8 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                         _buildSectionTitle("Double Chicken", Colors.purple),
                         const SizedBox(height: 15),
                         Padding(
-                          padding: const EdgeInsets.only(left:16.0,),
-                          child: HorizontalListWidget(items:doubleChicken,imageWidth: 80),
+                          padding: const EdgeInsets.only(left:8.0,),
+                          child: HorizontalListWidget(items:doubleChicken,imageWidth: 66,imageHeight: 65, totalwidth:66),
                         ),
                         const SizedBox(height: 10),
 
@@ -378,8 +378,8 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                         _buildSectionTitle("Best sellers", Colors.purpleAccent),
                         const SizedBox(height: 15),
                         Padding(
-                          padding: const EdgeInsets.only(left:16.0,),
-                          child: HorizontalListWidget(items: bestSellers, imageWidth: 110),
+                          padding: const EdgeInsets.only(left:8.0,),
+                          child: HorizontalListWidget(items: bestSellers, imageWidth: 90,imageHeight: 68, totalwidth:90),
                         ),
                       ],
                     ),
@@ -625,11 +625,13 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
 class HorizontalListWidget extends StatefulWidget {
   final List<Map<String, String>> items;
   final double imageWidth;
+  final double totalwidth;
+  final double imageHeight;
 
   const HorizontalListWidget({
     super.key,
     required this.items,
-    this.imageWidth = 80,
+    this.imageWidth = 65, this.totalwidth=110, this.imageHeight=65
   });
 
   @override
@@ -676,23 +678,42 @@ class _HorizontalListWidgetState extends State<HorizontalListWidget> {
               itemBuilder: (context, index) {
                 final item = items[index];
                 return Container(
-                  width: widget.imageWidth,
-                  margin: const EdgeInsets.only(right: 12),
+                  width: widget.totalwidth,
+                  margin: const EdgeInsets.only(right: 10),
                   child: Column(
                     children: [
                       ClipRRect(
                         borderRadius:
                         const BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.asset(item["image"]!),
+                        child: Image.asset(item["image"]!, height: widget.imageHeight,width: widget.imageWidth,),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(item["title"]!, style: TextStyle(fontSize: 10)),
-                            Text(item["st1"]!, style: TextStyle(fontSize: 9)),
-                            Text(item["st2"]!, style: TextStyle(fontSize: 9)),
+                            Text(item["title"]!, style: GoogleFonts.secularOne(
+                              textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 9,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            textAlign: TextAlign.center,),
+                            Text(item["st1"]!, style: GoogleFonts.sedanSc(
+                              textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),),
+                            Text(item["st2"]!, style: GoogleFonts.sedanSc(
+                              textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),),
                           ],
                         ),
                       ),
@@ -705,7 +726,7 @@ class _HorizontalListWidgetState extends State<HorizontalListWidget> {
 
           /// Forward Button
           Padding(
-            padding: const EdgeInsets.only(bottom: 50.0),
+            padding: const EdgeInsets.only(bottom: 100.0),
             child: IconButton(
               icon: Image.asset("assets/images/round_forward.png", height: 25),
               onPressed: () {

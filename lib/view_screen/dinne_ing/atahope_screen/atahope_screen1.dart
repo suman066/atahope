@@ -412,16 +412,16 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height:24,
-                              width: 24,
+                              height:15,
+                              width: 15,
                               child: Image.asset(
                                 "assets/images/zoom_out_icon.png",
                               ),
                             ),
                             SizedBox(height: 25,),
                             SizedBox(
-                              height:24,
-                              width: 24,
+                              height:15,
+                              width: 15,
                               child: Image.asset(
                                 "assets/images/zoom_in_icon.png",
                               ),

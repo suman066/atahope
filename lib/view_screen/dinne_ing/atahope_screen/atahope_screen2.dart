@@ -502,7 +502,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                   title,
                     style: GoogleFonts.secularOne(
                       textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
-                        fontWeight: FontWeight.w400,),
+                        fontWeight: FontWeight.w600,),
                     )
                 ),
               ),
@@ -553,7 +553,7 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
   @override
   void initState() {
     super.initState();
-    controller = PageController(viewportFraction: 0.6, initialPage: 1);
+    controller = PageController(viewportFraction: 0.43, initialPage: 1);
   }
 
   int mappedIndex(int i) {
@@ -651,7 +651,9 @@ class _RestaurantScrollState extends State<RestaurantScroll> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset("assets/images/f1.png"),
+                              SizedBox(width: 2.0,),
                               Image.asset("assets/images/f2.png"),
+                              SizedBox(width: 2.0,),
                               Text(
                                 "${r.distance}m",
                                 style: GoogleFonts.secularOne(
@@ -720,8 +722,157 @@ class CafetariaScroll extends StatefulWidget {
   @override
   State<CafetariaScroll> createState() => _CafetariaScrollState();
 }
-
 class _CafetariaScrollState extends State<CafetariaScroll> {
+  late PageController controller;
+  ValueNotifier<int> currentIndex = ValueNotifier(0);
+
+  @override
+  void initState() {
+    super.initState();
+    controller = PageController(viewportFraction: 0.6, initialPage: 1);
+  }
+
+  int mappedIndex(int i) {
+    if (i == 0) return cafetaria.length - 1;
+    if (i == cafetaria.length + 1) return 0;
+    return i - 1;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      child: ValueListenableBuilder<int>(
+        valueListenable: currentIndex,
+        builder: (context, value, _) {
+          return Row(
+            children: [
+              /// LEFT ARROW
+              IconButton(
+                icon: SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset("assets/images/round_back.png")),
+                onPressed: () {
+                  currentIndex.value--;
+                  controller.animateToPage(
+                    currentIndex.value + 1,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+
+              /// PAGE VIEW
+              Expanded(
+                child: PageView.builder(
+                  controller: controller,
+                  itemCount: cafetaria.length + 2,
+                  onPageChanged: (page) {
+                    if (page == 0) {
+                      Future.microtask(() => controller.jumpToPage(cafetaria.length));
+                      currentIndex.value = cafetaria.length - 1;
+                    } else if (page == cafetaria.length + 1) {
+                      Future.microtask(() => controller.jumpToPage(1));
+                      currentIndex.value = 0;
+                    } else {
+                      currentIndex.value = page - 1;
+                    }
+                  },
+                  itemBuilder: (context, i) {
+                    final r = cafetaria[mappedIndex(i)];
+                    final double pad = (mappedIndex(i) == currentIndex.value) ? 20 : 0;
+
+                    return Padding(
+                      padding: EdgeInsets.only(top: pad),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          /// TITLE
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(r.image),
+                              const SizedBox(width: 4),
+                              Flexible(
+                                child: Text(
+                                  r.title,
+                                  style: GoogleFonts.secularOne(
+                                    textStyle: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+
+                          /// IMAGE
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: SizedBox(
+                                height: 90,
+                                width: 90,
+                                child: Image.asset(r.image1, fit: BoxFit.cover)
+                            ),
+                          ),
+
+                          /// bottom arrows + distance
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/images/f1.png"),
+                              SizedBox(width: 2.0,),
+                              Image.asset("assets/images/f2.png",width: 48,),
+                              SizedBox(width: 2.0,),
+                              Text(
+                                "${r.distance}m",
+                                style: GoogleFonts.secularOne(
+                                  textStyle: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+
+              /// RIGHT ARROW
+              IconButton(
+                icon: SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset("assets/images/round_forward.png")),
+                onPressed: () {
+                  currentIndex.value++;
+                  controller.animateToPage(
+                    currentIndex.value + 1,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+/*class _CafetariaScrollState extends State<CafetariaScroll> {
   late PageController controller;
   ValueNotifier<int> currentIndex = ValueNotifier(0);
 
@@ -859,5 +1010,5 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
       ),
     );
   }
-}
+}*/
 
