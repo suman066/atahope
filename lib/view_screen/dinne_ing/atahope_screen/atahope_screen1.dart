@@ -167,7 +167,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
 
               // ===== LANGUAGE & CURRENCY DROPDOWNS =====
               // ===== LANGUAGE & CURRENCY DROPDOWNS =====
@@ -248,7 +248,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
 
 
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 15),
 
               // ===== SEARCH BAR =====
               Container(
@@ -318,7 +318,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 15),
 
               // ===== FROM - TO TEXTFIELDS + DISTANCE =====
               Row(
@@ -396,7 +396,7 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
 
               // ===== GLOBE SECTION (TABS FIXED ON RIGHT) =====
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
@@ -434,12 +434,12 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                   // Left: Animated globe section
                   Expanded(
                     child: SizedBox(
-                      height: 400,
+                      height: 270,
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const SizedBox(width: 20),
+                            //const SizedBox(width: 20),
                             AnimatedSwitcher(
                               duration: const Duration(milliseconds: 500),
                               transitionBuilder: (child, anim) => FadeTransition(
@@ -451,8 +451,8 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                                 borderRadius: BorderRadius.circular(100),
                                 child: Image.asset(
                                   globeImages[selectedTab],
-                                  height: 240,
-                                  width: 240,
+                                  height: 260,
+                                  width: 255,
                                   fit: BoxFit.cover,
                                 ),
 

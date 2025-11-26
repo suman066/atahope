@@ -173,7 +173,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
 
               // ===== FROM - TO TEXTFIELDS + DISTANCE =====
               Padding(
@@ -262,7 +262,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                 ),
               ),
 
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
               SizedBox(
                 height: 320,
                 child: Row(
@@ -502,7 +502,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                   title,
                     style: GoogleFonts.secularOne(
                       textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
-                        fontWeight: FontWeight.w600,),
+                        fontWeight: FontWeight.w800,),
                     )
                 ),
               ),

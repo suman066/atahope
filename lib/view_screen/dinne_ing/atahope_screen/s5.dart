@@ -302,7 +302,7 @@ class _s5State extends State<s5> {
               ),
 
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
 
               // Extra Sauce Section
               _buildSectionHeader("Extra Sauce", count: 1),
@@ -338,7 +338,7 @@ class _s5State extends State<s5> {
               ],
               height: 110, width: 53, gap:30),
 
-              const SizedBox(height: 25),
+              //const SizedBox(height: 10),
 
               // Desserts
               _buildHorizontalList([
@@ -351,7 +351,7 @@ class _s5State extends State<s5> {
                 {'image': 'assets/images/bb12.png', 'text': ''},
                 {'image': 'assets/images/bb13.png', 'text': ''},
               ], height: 103, width: 75,gap: 12.0),
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
             ],
           ),
         ),

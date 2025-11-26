@@ -153,7 +153,7 @@ class _s4State extends State<s4> {
                 padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
                 child: FoodListWidget(items: meatItems),
               ),
-              const SizedBox(height: 5),
+              //const SizedBox(height: 5),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: _buildSectionTitle('Meatless',"assets/images/a5.png"),
@@ -162,7 +162,7 @@ class _s4State extends State<s4> {
                 padding: const EdgeInsets.only(left: 12, top: 12, bottom: 12),
                 child: FoodListWidget(items: meatlessItems),
               ),
-              const SizedBox(height: 30),
+             // const SizedBox(height: 30),
             ],
           ),
         ),
@@ -175,7 +175,7 @@ class _s4State extends State<s4> {
       child: Wrap(
         spacing: 10, // space between items horizontally
         runSpacing: 10, // space between lines
-        alignment: WrapAlignment.center, // center all buttons
+        alignment: WrapAlignment.start, // center all buttons
         children: List.generate(categories.length, (index) {
           final item = categories[index];
           final isSelected = selectedCategory == index;

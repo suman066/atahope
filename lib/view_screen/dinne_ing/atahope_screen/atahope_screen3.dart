@@ -211,7 +211,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
 
               // ===== FROM - TO TEXTFIELDS + DISTANCE =====
               Padding(
@@ -300,9 +300,9 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
             SizedBox(
-              height: 250,
+              height: 240,
               child: Row(
                 children: [
                   // BACK BUTTON
@@ -357,7 +357,7 @@ class _AtahopeScreen3State extends State<AtahopeScreen3> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            //const SizedBox(height: 20),
 
 
               Row(
@@ -667,7 +667,7 @@ class _HorizontalListWidgetState extends State<HorizontalListWidget> {
     final items = widget.items;
 
     return SizedBox(
-      height: 170,
+      height: 145,
       child: Row(
         children: [
           Expanded(
@@ -726,7 +726,7 @@ class _HorizontalListWidgetState extends State<HorizontalListWidget> {
 
           /// Forward Button
           Padding(
-            padding: const EdgeInsets.only(bottom: 100.0),
+            padding: const EdgeInsets.only(bottom: 80.0),
             child: IconButton(
               icon: Image.asset("assets/images/round_forward.png", height: 25),
               onPressed: () {
