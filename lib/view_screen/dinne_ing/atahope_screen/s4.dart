@@ -171,10 +171,10 @@ class _s4State extends State<s4> {
   }
   Widget _buildCategoryTabs() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Wrap(
-        spacing: 10, // space between items horizontally
-        runSpacing: 10, // space between lines
+        spacing: 4, // space between items horizontally
+        runSpacing: 4, // space between lines
         alignment: WrapAlignment.start, // center all buttons
         children: List.generate(categories.length, (index) {
           final item = categories[index];
@@ -182,8 +182,9 @@ class _s4State extends State<s4> {
           return GestureDetector(
             onTap: () => setState(() => selectedCategory = index),
             child: AnimatedContainer(
+              width: 118,
               duration: const Duration(milliseconds: 250),
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 15),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.purple : Colors.transparent,
                 borderRadius: BorderRadius.circular(35),
@@ -194,14 +195,14 @@ class _s4State extends State<s4> {
                   Text(
                       item["name"],
                     style:GoogleFonts.montserrat(
-                      textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 20,
+                      textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 17,
                         fontWeight: FontWeight.w400,),
                     )
                   ),
                   SizedBox(height: 2.0,),
                   SizedBox(
-                      height: 35,
-                      width: 35,
+                      height: 40,
+                      width: 40,
                       child: Image.asset(item["image"])
                   )
                 ],

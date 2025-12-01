@@ -722,7 +722,7 @@ class CafetariaScroll extends StatefulWidget {
   @override
   State<CafetariaScroll> createState() => _CafetariaScrollState();
 }
-class _CafetariaScrollState extends State<CafetariaScroll> {
+/*class _CafetariaScrollState extends State<CafetariaScroll> {
   late PageController controller;
   ValueNotifier<int> currentIndex = ValueNotifier(0);
 
@@ -870,9 +870,9 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
       ),
     );
   }
-}
+}*/
 
-/*class _CafetariaScrollState extends State<CafetariaScroll> {
+class _CafetariaScrollState extends State<CafetariaScroll> {
   late PageController controller;
   ValueNotifier<int> currentIndex = ValueNotifier(0);
 
@@ -933,7 +933,7 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
             child: ListView.separated(
               controller: _controller,
               scrollDirection: Axis.horizontal,
-              separatorBuilder: (_, __) => SizedBox(width: 12),
+              separatorBuilder: (_, __) => SizedBox(width: 50),
               itemCount: cafetaria.length,
               itemBuilder: (context, index) {
                 final r = cafetaria[mappedIndex(index)];
@@ -944,7 +944,7 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(r.image),
+                        Image.asset(r.image, width: 20, height: 20,),
                         const SizedBox(width: 4),
                         Text(
                           r.title,
@@ -966,8 +966,8 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox(
-                        height:115,
-                          width:115,
+                        height:110,
+                          width:110,
                           child: Image.asset(r.image1, fit: BoxFit.cover)),
                     ),
 
@@ -976,7 +976,9 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset("assets/images/f1.png"),
+                        const SizedBox(width: 4),
                         Image.asset("assets/images/f2.png"),
+                        const SizedBox(width: 4),
                         Text(
                           "${r.distance}m",
                           style: GoogleFonts.secularOne(
@@ -1010,5 +1012,5 @@ class _CafetariaScrollState extends State<CafetariaScroll> {
       ),
     );
   }
-}*/
+}
 
