@@ -23,19 +23,18 @@ class DinneIngPage extends StatefulWidget {
 }
 
 class _DinneIngPageState extends State<DinneIngPage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; // Start on first tab (Atahope tab)
 
-  // Tab navigators (each tab keeps its own stack)
-  final List<GlobalKey<NavigatorState>> _navigatorKeys = List.generate(
-    5,
-        (_) => GlobalKey<NavigatorState>(),
-  );
+  // Each tab keeps its own navigator state
+  final List<GlobalKey<NavigatorState>> _navigatorKeys =
+  List.generate(5, (_) => GlobalKey<NavigatorState>());
 
-  // Keep a history of tab selections
+  // History of tab selections for back button
   final List<int> _navHistory = [0];
 
+  // Routes for web URL updates
   final List<String> _routes = const [
-    AppRoutes.bills,
+    AppRoutes.atahope_screen1, // first tab starts with Atahope
     AppRoutes.check,
     AppRoutes.scan,
     AppRoutes.chat,
@@ -45,13 +44,13 @@ class _DinneIngPageState extends State<DinneIngPage> {
   Future<bool> _onWillPop() async {
     final currentNavigator = _navigatorKeys[_selectedIndex].currentState!;
 
-    // 1️⃣ Try to pop inside current tab
+    // Pop inside current tab if possible
     if (currentNavigator.canPop()) {
       currentNavigator.pop();
       return false;
     }
 
-    // 2️⃣ Go back to previous tab (if available)
+    // Go back to previous tab if any
     if (_navHistory.length > 1) {
       setState(() {
         _navHistory.removeLast();
@@ -60,31 +59,42 @@ class _DinneIngPageState extends State<DinneIngPage> {
       return false;
     }
 
-    // 3️⃣ Otherwise allow app to close
+    // Otherwise allow app to close
     return true;
   }
 
-  // Build a per-tab Navigator
-  Widget _buildTabNavigator(int index, Widget child) {
+  // Build a navigator for each tab
+  Widget _buildTabNavigator(int index, Widget initialPage) {
     return Navigator(
       key: _navigatorKeys[index],
       onGenerateRoute: (settings) {
-        Widget page = child;
+        // initial route ('/' or null) -> show the tab's initial page
+        Widget page = initialPage;
 
-        // Example: handle subpages here
-        if (settings.name == AppRoutes.atahope_screen1) {
-          page = const AtahopeScreen1();
-        }else if(settings.name == AppRoutes.atahopeScreen2) {
-          page = const AtahopeScreen2();
-        }
-        else if(settings.name == AppRoutes.atahopeScreen3) {
-          page = const AtahopeScreen3();
-        }
-        else if(settings.name == AppRoutes.s4) {
-          page = const s4();
-        }
-        else if(settings.name == AppRoutes.s5) {
-          page = const s5();
+        if (settings.name != null && settings.name != '/') {
+          switch (settings.name) {
+          // First tab routes
+            case AppRoutes.bills:
+              page = const BillsPage();
+              break;
+            case AppRoutes.atahope_screen1:
+              page = const AtahopeScreen1();
+              break;
+            case AppRoutes.atahopeScreen2:
+              page = const AtahopeScreen2();
+              break;
+            case AppRoutes.atahopeScreen3:
+              page = const AtahopeScreen3();
+              break;
+            case AppRoutes.s4:
+              page = const s4();
+              break;
+            case AppRoutes.s5:
+              page = const s5();
+              break;
+
+          // You can add more routes per tab here if needed
+          }
         }
 
         return MaterialPageRoute(
@@ -95,6 +105,54 @@ class _DinneIngPageState extends State<DinneIngPage> {
     );
   }
 
+  void _handleTabTap(int index) {
+    if (index == 0) {
+      // 🔹 Bills tab tapped
+      setState(() {
+        if (_selectedIndex != 0) {
+          _selectedIndex = 0;
+          if (_navHistory.isEmpty || _navHistory.last != 0) {
+            _navHistory.add(0);
+          }
+        }
+      });
+
+      final nav = _navigatorKeys[0].currentState;
+      if (nav != null) {
+        // Replace whatever is in first tab stack with BillsPage
+        // So: AtahopeScreen1 is NOT shown again after this
+        nav.pushNamedAndRemoveUntil(
+          AppRoutes.bills,
+              (route) => false,
+        );
+      }
+    } else {
+      // 🔹 Other tabs (Check, Scan, Chat, Profile)
+      if (_selectedIndex == index) {
+        // Same tab re-tap → pop to root
+        _navigatorKeys[index]
+            .currentState!
+            .popUntil((route) => route.isFirst);
+      } else {
+        // Switch to another tab
+        setState(() {
+          _selectedIndex = index;
+          if (_navHistory.isEmpty || _navHistory.last != index) {
+            _navHistory.add(index);
+          }
+        });
+      }
+    }
+
+    // Update web URL
+    if (kIsWeb) {
+      SystemNavigator.routeInformationUpdated(
+        location: _routes[index],
+        replace: true,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -102,11 +160,11 @@ class _DinneIngPageState extends State<DinneIngPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          // Keeps each tab alive (state preserved)
           child: IndexedStack(
             index: _selectedIndex,
             children: [
-              _buildTabNavigator(0, const BillsPage()),
+              // 🔹 First tab root = AtahopeScreen1 (Bills NOT shown initially)
+              _buildTabNavigator(0, const AtahopeScreen1()),
               _buildTabNavigator(1, const CheckPage()),
               _buildTabNavigator(2, const ScanPage()),
               _buildTabNavigator(3, const ChatPage()),
@@ -116,32 +174,9 @@ class _DinneIngPageState extends State<DinneIngPage> {
         ),
         bottomNavigationBar: CustomBottomNav(
           currentIndex: _selectedIndex,
-          onTap: (index) {
-            if (_selectedIndex == index) {
-              // Pop to root of same tab
-              _navigatorKeys[index]
-                  .currentState!
-                  .popUntil((route) => route.isFirst);
-            } else {
-              // Change tab + track history
-              setState(() {
-                _selectedIndex = index;
-                if (_navHistory.isEmpty || _navHistory.last != index) {
-                  _navHistory.add(index);
-                }
-              });
-            }
-
-            if (kIsWeb) {
-              SystemNavigator.routeInformationUpdated(
-                location: _routes[index],
-                replace: true,
-              );
-            }
-          },
+          onTap: _handleTabTap,
         ),
       ),
     );
   }
 }
-

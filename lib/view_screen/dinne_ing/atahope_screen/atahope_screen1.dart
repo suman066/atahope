@@ -46,7 +46,9 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
               highlightColor: Colors.transparent,
               hoverColor: Colors.transparent,
               onTap: () {
-                Navigator.pop(context);
+                //Navigator.pop(context);
+                NavigationHelper.pushAndRemoveUntil(AppRoutes.welcome,(settings) => false);
+                //Navigator.of(context).popUntil(AppRoutes.atahope_screen1);
               },
               child: Padding(
                 padding: const EdgeInsets.all(15.0), // optional to give some spacing
@@ -57,12 +59,22 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 ),
               ),
             ),
-            title: Text(
-              'ATAHOPE',
-                style: GoogleFonts.libreFranklin(
-                  textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 25,
-                    fontWeight: FontWeight.w400,),
-                )
+            title: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onTap: () {
+                //Navigator.pop(context);
+                NavigationHelper.pushAndRemoveUntil(AppRoutes.welcome,(settings) => false);
+                //Navigator.of(context).popUntil(AppRoutes.atahope_screen1);
+              },
+              child: Text(
+                'ATAHOPE',
+                  style: GoogleFonts.libreFranklin(
+                    textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 25,
+                      fontWeight: FontWeight.w400,),
+                  )
+              ),
             ),
             actions: [
               IconButton(
@@ -108,60 +120,132 @@ class _AtahopeScreen1State extends State<AtahopeScreen1> {
                 height: 200,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: const [
-                    FoodCard(
-                      image:
-                      "assets/images/double_chicken.png",
-                      title: "Double chicken",
-                      price: "15 AED",
+                  children:  [
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/double_chicken.png",
+                        title: "Double chicken",
+                        price: "15 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/pizza_mozzarella.png",
-                      title: "Pizza Mozzarella",
-                      price: "20 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/pizza_mozzarella.png",
+                        title: "Pizza Mozzarella",
+                        price: "20 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/spaghetti_special.png",
-                      title: "Spaghetti Special",
-                      price: "25 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/spaghetti_special.png",
+                        title: "Spaghetti Special",
+                        price: "25 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/double_chicken.png",
-                      title: "Double chicken",
-                      price: "15 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/double_chicken.png",
+                        title: "Double chicken",
+                        price: "15 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/pizza_mozzarella.png",
-                      title: "Pizza Mozzarella",
-                      price: "20 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/pizza_mozzarella.png",
+                        title: "Pizza Mozzarella",
+                        price: "20 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/spaghetti_special.png",
-                      title: "Spaghetti Special",
-                      price: "25 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/spaghetti_special.png",
+                        title: "Spaghetti Special",
+                        price: "25 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/double_chicken.png",
-                      title: "Double chicken",
-                      price: "15 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/double_chicken.png",
+                        title: "Double chicken",
+                        price: "15 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/pizza_mozzarella.png",
-                      title: "Pizza Mozzarella",
-                      price: "20 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/pizza_mozzarella.png",
+                        title: "Pizza Mozzarella",
+                        price: "20 AED",
+                      ),
                     ),
-                    FoodCard(
-                      image:
-                      "assets/images/spaghetti_special.png",
-                      title: "Spaghetti Special",
-                      price: "25 AED",
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onTap:(){
+                        Navigator.of(context).pushNamed(AppRoutes.atahopeScreen3);
+                      },
+                      child: FoodCard(
+                        image:
+                        "assets/images/spaghetti_special.png",
+                        title: "Spaghetti Special",
+                        price: "25 AED",
+                      ),
                     ),
                   ],
                 ),

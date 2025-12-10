@@ -56,7 +56,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const SizedBox(height: 25),
                       ElevatedButton(
                         onPressed: () {
-                          //NavigationHelper.push(AppRoutes.dineIn);
+                          NavigationHelper.push(AppRoutes.dineIn);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.gray,
@@ -92,7 +92,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const SizedBox(height: 15),
                       ElevatedButton(
                         onPressed: () {
-                          NavigationHelper.push(AppRoutes.dineIn);
+                          //NavigationHelper.push(AppRoutes.dineIn);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.gray,

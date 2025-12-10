@@ -1,5 +1,6 @@
 import 'package:atahope/Constants/constants.dart';
 import 'package:atahope/helper/navigation_helper/app_routes.dart';
+import 'package:atahope/helper/navigation_helper/navigation_helper.dart';
 import 'package:atahope/view_screen/custom_switch.dart';
 import 'package:atahope/view_screen/dinne_ing/atahope_screen/atahope_screen3.dart'
     show s2;
@@ -52,6 +53,7 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
               hoverColor: Colors.transparent,
               onTap: () {
                 Navigator.pop(context);
+                Navigator.of(context).pushNamed(AppRoutes.atahope_screen1);
               },
               child: Padding(
                 padding: const EdgeInsets.all(15.0), // optional to give some spacing
@@ -62,12 +64,21 @@ class _AtahopeScreen2State extends State<AtahopeScreen2> {
                 ),
               ),
             ),
-            title: Text(
-                'ATAHOPE',
-                style: GoogleFonts.libreFranklin(
-                  textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 25,
-                    fontWeight: FontWeight.w400,),
-                )
+            title: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).pushNamed(AppRoutes.atahope_screen1);
+              },
+              child: Text(
+                  'ATAHOPE',
+                  style: GoogleFonts.libreFranklin(
+                    textStyle: TextStyle(color: AppColors.textBlack,fontStyle: FontStyle.normal,fontSize: 25,
+                      fontWeight: FontWeight.w400,),
+                  )
+              ),
             ),
             actions: [
               IconButton(

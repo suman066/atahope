@@ -123,6 +123,7 @@ class AppRouterDelegate extends RouterDelegate<RouteSettings>
 }
 
 
+/*
 class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
   @override
   Future<RouteSettings> parseRouteInformation(RouteInformation routeInformation) async {
@@ -143,4 +144,26 @@ class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
     return RouteInformation(uri: Uri.parse(name));
   }
 
+}
+*/
+
+class AppRouteInformationParser extends RouteInformationParser<RouteSettings> {
+  @override
+  Future<RouteSettings> parseRouteInformation(RouteInformation routeInformation) async {
+    final uri = routeInformation.uri ?? Uri.parse('/');
+
+    if (uri.pathSegments.isEmpty) {
+      return const RouteSettings(name: AppRoutes.splash);
+    }
+
+    // FIX: use full path, not just first segment
+    final fullPath = uri.path; // e.g., "/dinneIng/atahope_screen1/atahopeScreen3"
+    return RouteSettings(name: fullPath);
+  }
+
+  @override
+  RouteInformation? restoreRouteInformation(RouteSettings configuration) {
+    final name = configuration.name ?? '/';
+    return RouteInformation(uri: Uri.parse(name));
+  }
 }
